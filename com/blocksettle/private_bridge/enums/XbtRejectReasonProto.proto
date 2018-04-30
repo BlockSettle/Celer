@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.enums.xbtrejectreason;
+
+option java_package = "com.blocksettle.private_bridge.enums.xbtrejectreason";
+
+enum XBTRejectReason {
+	NONE = 0;
+	REQUESTOR_AUTH_ADDRESS_FAILED = 1;
+	DEALER_AUTH_ADDRESS_FAILED = 2;
+	SETTLEMENT_REGISTRATION_FAILED = 3;
+	DEALER_CASH_RESERVATION_FAILED = 4;
+	REQUEST_CASH_RESERVATION_FAILED = 5;
+}

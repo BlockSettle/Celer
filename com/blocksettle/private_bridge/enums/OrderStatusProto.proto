@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.enums.orderstatus;
+
+option java_package = "com.blocksettle.private_bridge.enums.orderstatus";
+
+enum OrderStatus {
+	NEW = 1;
+	PARTIALLY_FILLED = 2;
+	FILLED = 3;
+	CANCELED = 4;
+	PENDING_CANCEL = 5; 
+	REJECTED = 6;
+	PENDING_REPLACE = 7; 
+}

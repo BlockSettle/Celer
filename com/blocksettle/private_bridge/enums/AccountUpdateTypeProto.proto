@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.enums;
+
+option java_package = "com.blocksettle.private_bridge.enums";
+
+enum AccountUpdateType {
+
+	AccountNew = 1;
+	AccountUpdate = 2;
+	AccountDelete = 3;
+}

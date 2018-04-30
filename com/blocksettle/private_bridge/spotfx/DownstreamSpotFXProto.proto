@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.spotfx;
+
+option java_package = "com.blocksettle.private_bridge.spotfx";
+
+import "com/blocksettle/private_bridge/enums/ExecTypeProto.proto";
+import "com/blocksettle/private_bridge/enums/OrderStatusProto.proto";
+
+
+message FxTradeResponse
+{
+  required string clOrderId = 1;
+ 
+  optional com.blocksettle.private_bridge.enums.exectype.ExecType execType = 2;
+  optional com.blocksettle.private_bridge.enums.orderstatus.OrderStatus orderStatus = 3;
+  optional string currency = 4;
+
+  optional string debugString = 5;
+  optional string statusText = 6;
+}

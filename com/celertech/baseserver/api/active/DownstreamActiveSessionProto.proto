@@ -1,0 +1,24 @@
+package com.celertech.baseserver.api.active;
+
+import "com/celertech/baseserver/api/enums/SessionTypeProto.proto";
+
+option java_package = "com.celertech.baseserver.api.active";
+
+message ActiveSessionDownstreamEvent {
+	
+	optional com.celertech.baseserver.api.enums.sessiontype.SessionType sessionType = 1;
+	optional string sessionKey = 2;
+	optional string sessionToken = 3;
+	optional string subsystem = 4;
+	optional string node = 5;
+	optional int64 loggedInInMillis = 6;
+	optional SessionOperation operation = 7;
+	optional string socketCode = 8;
+
+	enum SessionOperation {
+    	CREATE = 0;
+		READ = 1;
+		UPDATE = 2;
+		DELETE = 3;
+	}
+}

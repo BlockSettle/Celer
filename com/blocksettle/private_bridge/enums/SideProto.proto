@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.enums;
+
+option java_package = "com.blocksettle.private_bridge.enums";
+
+enum Side {
+
+	BUY = 1;
+	SELL = 2;
+}

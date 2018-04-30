@@ -1,0 +1,42 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.accounts;
+
+option java_package = "com.blocksettle.private_bridge.accounts";
+
+import "com/blocksettle/private_bridge/enums/AccountUpdateTypeProto.proto";
+import "com/celertech/staticdata/api/account/DownstreamAccountProto.proto";
+
+message SettlementAccountDownstreamEvent {
+   optional string   accountName = 1;
+   optional int64    accountId = 2;
+
+   optional string   entityName = 3;
+   optional int64    entityId = 4;
+
+   optional string   currency = 5;
+   optional int64    currencyId = 6;
+
+   optional double   balance = 7;
+}
+
+message AccoutBalanceUpdatedDownstreamEvent {
+   required string entity = 1;
+   required string currency = 2;
+   required double balance = 3;
+}
+
+message AllSettlementAccountSnapshotDownstreamEvent {
+    repeated SettlementAccountDownstreamEvent settlementAccounts = 1;
+}
+
+message AccountBulkUpdateDownstreamEvent {
+   optional string requestId = 1;
+
+   repeated AccountUpdateDownstreamEvent accountUpdateDownstreamEvents = 2;
+}
+
+message AccountUpdateDownstreamEvent {
+   optional com.blocksettle.private_bridge.enums.AccountUpdateType updateType = 1;
+   optional com.celertech.staticdata.api.account.AccountDownstreamEvent accountInfo = 2;
+}

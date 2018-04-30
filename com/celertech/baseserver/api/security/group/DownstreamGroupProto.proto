@@ -1,0 +1,29 @@
+package com.celertech.baseserver.api.security.group;
+
+option java_package = "com.celertech.baseserver.api.security.group";
+
+import "com/celertech/baseserver/api/security/authority/DownstreamAuthorityProto.proto";
+
+message GroupDownstreamEvent {
+
+    optional int64 id = 1;
+	optional string code = 2;
+	optional string name = 3;
+	optional string description = 4;
+	
+	repeated com.celertech.baseserver.api.security.authority.AuthorityDownstreamEvent authority = 5;
+}
+
+message GrantedGroupDownstreamEvent {
+
+	optional string username = 1;
+	optional GroupDownstreamEvent group = 2;
+
+}
+
+message RevokedGroupDownstreamEvent {
+
+    optional string username = 1;
+    optional GroupDownstreamEvent group = 2;
+
+}

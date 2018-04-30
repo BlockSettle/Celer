@@ -1,0 +1,25 @@
+package com.celertech.baseserver.api.security.authority;
+
+option java_package = "com.celertech.baseserver.api.security.authority";
+
+message AuthorityDownstreamEvent {
+
+	optional string code = 1;
+	optional string name = 2;
+	optional string description = 3;
+	
+}
+
+message GrantedAuthorityDownstreamEvent {
+
+	optional string username = 1;
+	optional AuthorityDownstreamEvent authority = 2;
+
+}
+
+message RevokedAuthorityDownstreamEvent {
+
+    optional string username = 1;
+    optional AuthorityDownstreamEvent authority = 2;
+
+}

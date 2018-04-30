@@ -1,0 +1,19 @@
+package com.celertech.baseserver.api.datastream;
+
+option java_package = "com.celertech.baseserver.api.datastream";
+
+message UpdateConfigurationRequest {
+	
+	optional string clientRequestId = 1;
+	optional int64 requestId = 2;
+	optional string moduleConfigurationFile = 3;
+	optional string requestByUser = 4;
+	repeated TemplateProperty templateProperties = 5;
+}
+
+message TemplateProperty {
+
+	optional string key = 1;
+	optional string value = 2;
+	optional string description = 3;
+}

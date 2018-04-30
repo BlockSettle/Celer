@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.eod;
+
+option java_package = "com.blocksettle.private_bridge.eod";
+
+import "com/blocksettle/private_bridge/enums/AssetTypeProto.proto";
+import "com/blocksettle/private_bridge/enums/ProductTypeProto.proto";
+import "com/blocksettle/private_bridge/enums/EoDPriceTypeProto.proto";
+
+message EndOfDayPriceReport
+{
+	repeated EndOfDayPrice eodPrices = 1;
+	optional string timestamp = 2;
+}
+
+message EndOfDayPrice
+{
+	optional com.blocksettle.private_bridge.enums.AssetType assetType = 1;
+	optional com.blocksettle.private_bridge.enums.ProductType productType = 2;
+	optional string securityId = 3;
+	optional double price = 4;
+	optional com.blocksettle.private_bridge.enums.EoDPriceType eodPriceType = 5;
+}

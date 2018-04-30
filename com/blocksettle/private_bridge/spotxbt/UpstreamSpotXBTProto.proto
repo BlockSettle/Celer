@@ -1,0 +1,162 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.spotxbt;
+
+option java_package = "com.blocksettle.private_bridge.spotxbt";
+
+import "com/blocksettle/enums/AuthAddessProto.proto";
+import "com/blocksettle/private_bridge/enums/SideProto.proto";
+
+message VerifyXBTQuoteRequest
+{
+   optional string clientRequestId = 1;
+
+   required string authenticationAddress = 2;
+   required com.blocksettle.enums.authaddress.AuthAddressType addressType = 3;
+
+   required string quoteRequestId = 4;
+}
+
+message VerifyXBTQuote
+{
+   optional string clientRequestId = 1;
+
+   required string authenticationAddress = 2;
+   required com.blocksettle.enums.authaddress.AuthAddressType addressType = 3;
+
+   required string quoteRequestId = 4;
+   required string quoteId = 5;
+}
+
+message ReserveCashForXBTRequest
+{
+   optional string quoteRequestId = 1;
+   optional string quoteId = 2;
+   
+   optional string settlementId = 3;
+   optional string requestorEntity = 4;
+   optional string dealerEntity = 5;
+   
+   optional com.blocksettle.private_bridge.enums.Side side = 6;
+   optional string securityId = 7;
+   optional string currency = 8;
+   
+   optional double qty = 9;
+   optional double contraQty = 10;
+   
+   optional double price = 11;
+   
+   optional string requestorAuthenticationAddress = 12;
+   optional string dealerAuthenticationAddress = 13;
+}
+
+message XBTTradeRequest
+{
+   optional string clientRequestId = 1;
+
+   required string clOrderId = 2;
+
+   optional string settlementId = 3;
+   optional string requestorEntity = 4;
+   optional string dealerEntity = 5;
+
+   optional com.blocksettle.private_bridge.enums.Side side = 6;
+   optional string securityId = 7;
+   optional string currency = 8;
+
+   optional double qty = 9;
+   optional double contraQty = 10;
+
+   optional double price = 11;
+
+   optional string requestorAuthenticationAddress = 12;
+   optional string dealerAuthenticationAddress = 13;
+
+   optional bytes requestorTransactionData = 14;
+   optional bytes dealerTransactionData = 15;
+}
+
+message XBTTradeStatusRequest {
+
+   optional string clOrderId = 1;
+}
+
+message VerifyColouredCoinQuoteRequest
+{
+   optional string quoteRequestId = 1;
+
+   optional string receiptAddress = 2;
+   optional bytes coinInput = 3;
+
+   optional string entity = 4;
+
+   optional com.blocksettle.private_bridge.enums.Side side = 5;
+   optional string securityId = 6;
+   optional string currency = 7;
+
+   optional double qty = 8;
+}
+
+message VerifyColouredCoinQuote
+{
+   optional string quoteRequestId = 1;
+   optional string quoteId = 2;
+
+   optional string receiptAddress = 3;
+   optional bytes coinInput = 4;
+
+   optional string entity = 5;
+
+   optional com.blocksettle.private_bridge.enums.Side side = 6;
+   optional string securityId = 7;
+   optional string currency = 8;
+
+   optional double price = 9;
+   optional double qty = 10;
+}
+
+// for requester's quote acceptance
+message VerifyColouredCoinAcceptedQuote
+{
+   optional string clOrderId = 1;
+   optional string quoteRequestId = 2;
+
+   optional bytes coinInput = 3;
+   optional string entity = 4;
+   optional com.blocksettle.private_bridge.enums.Side side = 5;
+   optional string securityId = 6;
+   optional string currency = 7;
+   optional double qty = 8;
+   optional double price = 9;
+}
+
+message ColouredCoinTradeRequest
+{
+   required string clOrderId = 1;
+
+   optional string settlementId = 2;
+   optional string requestorEntity = 3;
+   optional string dealerEntity = 4;
+
+   optional com.blocksettle.private_bridge.enums.Side side = 5;
+   optional string securityId = 6;
+   optional string currency = 7;
+
+   optional double qty = 8;
+   optional double contraQty = 9;
+
+   optional double price = 10;
+
+   optional string requestorReceiptAddress = 11;
+   optional string dealerReceiptAddress = 12;
+
+   optional bytes requestorTransactionData = 13;
+   optional bytes dealerTransactionData = 14;
+
+   optional string dealerQuoteId = 15;
+}
+
+message ColouredCoinTradeStatusRequest {
+
+   optional string clOrderId = 1;
+}

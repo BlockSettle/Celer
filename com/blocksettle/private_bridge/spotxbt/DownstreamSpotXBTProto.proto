@@ -1,0 +1,119 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.spotxbt;
+
+option java_package = "com.blocksettle.private_bridge.spotxbt";
+
+import "com/blocksettle/private_bridge/enums/ExecTypeProto.proto";
+import "com/blocksettle/private_bridge/enums/OrderStatusProto.proto";
+
+enum AuthAddressRejectReason
+{
+   // AddressNotVerified address is not known to BS
+   AddressNotVerified = 1;
+   // AddressRevoked - address was revoked
+   AddressRevoked = 2;
+   // InternalError - might be something wrong either with address,
+   //    or with server.
+   AuthAddressInternalError = 3;
+}
+
+enum CashReservationRejectReason
+{
+   NotEnoughFunds = 1;
+   InvalidEntityName = 2;
+   CashReservationInternalError = 3;
+}
+
+message VerifyXBTQuoteRequestResponse
+{
+   optional string clientRequestId = 1;
+   required string quoteRequestId = 2;
+
+   required string authenticationAddress = 3;
+   required bool   addressVerified = 4;
+   optional AuthAddressRejectReason rejectReason = 5;
+
+   // settlement id will be set for verified authentication address
+   optional string settlementId = 6;
+
+   // debugString might contain additional info about result, usually if there is
+   // error or validation failed
+   optional string debugString = 7;
+}
+
+message VerifyXBTQuoteResponse
+{
+   optional string clientRequestId = 1;
+   required string quoteRequestId = 2;
+   required string quoteId = 3; 
+
+   required string authenticationAddress = 4;
+   required bool   addressVerified = 5;
+   optional AuthAddressRejectReason rejectReason = 6;
+
+   // debugString might contain additional info about result, usually if there is
+   // error or validation failed
+   optional string debugString = 7;
+}
+
+message ReserveCashForXBTResponse
+{
+  optional string quoteRequestId = 1;
+  optional string quoteId = 2;
+  optional bool reserved = 3;
+  
+  optional string debugString = 4;
+}
+
+
+message XBTTradeResponse
+{
+  required string clOrderId = 1;
+ 
+  optional com.blocksettle.private_bridge.enums.exectype.ExecType execType = 2;
+  optional com.blocksettle.private_bridge.enums.orderstatus.OrderStatus orderStatus = 3;
+  optional string currency = 4;
+  optional string debugString = 5;
+  optional string statusText = 6;
+
+}
+
+message VerifyColouredCoinQuoteRequestResponse
+{
+  required string quoteRequestId = 1;
+  required bool verified = 2;
+  
+  optional string debugString = 3; 
+}
+
+message VerifyColouredCoinQuoteResponse
+{
+  required string quoteRequestId = 1;
+  required string quoteId = 2;
+  
+  required bool verified = 3;
+  
+  optional string debugString = 4;
+}
+
+message VerifyColouredCoinAcceptedQuoteResponse
+{
+  required string clOrderId = 1;
+  required bool verified = 2;
+  
+  optional string quoteRequestId = 3;
+  optional string debugString = 4;
+}
+
+message ColouredCoinTradeResponse
+{
+  required string clOrderId = 1;
+ 
+  optional com.blocksettle.private_bridge.enums.exectype.ExecType execType = 2;
+  optional com.blocksettle.private_bridge.enums.orderstatus.OrderStatus orderStatus = 3;
+
+  // there will be only one - for side that spending cash and buying XBT
+  optional string debugString = 4;
+  optional string statusText = 5;
+}

@@ -1,0 +1,15 @@
+package com.celertech.baseserver.api.diagnostic;
+
+option java_package = "com.celertech.baseserver.api.diagnostic";
+
+/**
+ * Message that the API user would send to the server if any system level diagnostics is to be performed
+ *
+ */
+message SendDiagnosticMessage {
+	
+	//Free text to tag the component that this log message is related to
+	optional string component = 1;
+	
+	optional string message = 2;
+}

@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.accounts;
+
+option java_package = "com.blocksettle.private_bridge.accounts";
+
+message FindAllAccounts {
+
+}
+
+message GetAllAccountBalanceSnapshot {
+
+}
+
+message AccountBulkUpdateAcknowledgement {
+	optional string requestId = 1;
+	
+	repeated string debugString = 2;
+}

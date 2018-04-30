@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.enums.exectype;
+
+option java_package = "com.blocksettle.private_bridge.enums.exectype";
+
+enum ExecType {
+	NEW = 1;
+	CANCELED = 2;
+	REPLACE = 3;
+	PENDING_CANCEL = 4;
+	REJECTED = 5;
+	TRADE = 6;       	// FILLED or PARTIALLY_FILLED
+	ORDER_STATUS = 7;   // communicates update to order status
+}

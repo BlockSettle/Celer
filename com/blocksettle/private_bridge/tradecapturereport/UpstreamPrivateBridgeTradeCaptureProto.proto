@@ -1,0 +1,18 @@
+package com.blocksettle.private_bridge.tradecapturereport;
+
+option java_package = "com.blocksettle.private_bridge.tradecapturereport";
+
+message CreateFxTradeCaptureReport {
+	
+	//asset currency format 'USD'. The ass_currency in the example of USD/JPY would be USD
+	optional string assCurrency = 1;
+	optional string numCurrency = 2;
+	optional double assQty = 3;
+	optional double numQty = 4;
+	optional string tradeDate = 5;
+	optional string acquirerAccount = 6;
+	optional string counterPartyAccount = 7;
+	optional string clientRefId = 8;
+	optional string fixSource = 9;
+
+}

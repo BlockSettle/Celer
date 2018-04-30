@@ -1,0 +1,62 @@
+package com.celertech.baseserver.api.security.authority;
+
+option java_package = "com.celertech.baseserver.api.security.authority";
+
+message GrantAuthorityToUserRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string username = 2;
+    optional string authorityCode = 3;
+
+}
+
+message RevokeAuthorityFromUserRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string username = 2;
+    optional string authorityCode = 3;
+
+}
+
+message CreateAuthorityRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string code = 2;
+    optional string name = 3;
+    optional string description = 4;
+
+}
+
+message DeleteAuthorityRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string code = 2;
+
+}
+
+
+
+message FindAllAuthorities {
+
+    optional string clientRequestId = 1;
+
+}
+
+message FindAllGrantedAuthoritiesForUsername {
+
+    optional string clientRequestId = 1;
+    optional string username = 2;
+
+}
+
+message FindAllGroupAuthoritiesForGroup {
+
+    optional string clientRequestId = 1;
+    optional int64 groupId = 2;
+
+}
+

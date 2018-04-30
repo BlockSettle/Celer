@@ -1,0 +1,4 @@
+package com.celertech.baseserver.api.log;
+
+option java_package = "com.celertech.baseserver.api.log";
+

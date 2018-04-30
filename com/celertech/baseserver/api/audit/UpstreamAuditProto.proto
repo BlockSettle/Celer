@@ -1,0 +1,59 @@
+package com.celertech.baseserver.api.audit;
+
+option java_package = "com.celertech.baseserver.api.audit";
+
+/**
+* Sending the following API event into the engine will 
+* return a collection of audit records for the matcing search terms
+**/
+message FindAuditRecordsRequest {
+
+    optional string clientRequestId = 1;
+	repeated SearchTerm searchTerms = 2;
+}
+
+/**
+* There are a few preset search terms that are already configured
+* sessionKey
+* operationId
+* operation
+* object
+* objectIdentifier
+* startDateTimestamp
+* endDateTimestamp
+* searchFrom
+* searchSize
+**/
+message SearchTerm {
+    optional string key = 1;
+    optional string value = 2;
+}
+
+/**
+* Sending the following API event into the engine will 
+* create an audit record and 
+* additionally put the record into the audit record search service if enabled 
+**/
+message CreateAuditRecordRequest {
+
+	optional string operationId     = 1;
+	optional string sessionKey      = 2;
+	optional string message         = 3;
+	optional string operation       = 4;
+	optional string object          = 5;
+	optional string objectIdentifier= 6;
+	optional string from            = 7;
+	optional string to              = 8;
+	optional string difference      = 9;
+	optional int64  timestampInMillis = 10;
+	
+}
+
+/**
+* Sending the following API event into the engine will clear out
+* any existing search index and rebuild them from the connected database audit record
+* table
+**/
+message RebuildAuditSearchIndexRequest {
+	
+}

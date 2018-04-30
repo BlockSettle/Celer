@@ -1,0 +1,72 @@
+package com.celertech.baseserver.api.security.group;
+
+option java_package = "com.celertech.baseserver.api.security.group";
+
+message GrantGroupToUserRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string username = 2;
+    optional string groupCode = 3;
+
+}
+
+message RevokeGroupFromUserRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string username = 2;
+    optional string groupCode = 3;
+
+}
+
+message GrantAuthorityToGroupRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string groupCode = 2;
+    optional string authorityCode = 3;
+
+}
+
+message RevokeAuthorityFromGroupRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string groupCode = 2;
+    optional string authorityCode = 3;
+
+}
+
+message CreateGroupRequest {
+
+    optional string clientRequestId = 1;
+
+    optional string code = 2;
+    optional string name = 3;
+    optional string description = 4;
+
+}
+
+message DeleteGroupRequest {
+
+    optional string clientRequestId = 1;
+
+    optional int64 id = 2;
+
+}
+
+
+message FindAllGroups {
+
+    optional string clientRequestId = 1;
+
+}
+
+message FindAllGrantedGroupsForUsername {
+
+    optional string clientRequestId = 1;
+    optional string username = 2;
+
+}
+

@@ -1,0 +1,21 @@
+package com.celertech.baseserver.api.audit;
+
+import "com/celertech/baseserver/api/enums/SessionTypeProto.proto";
+
+option java_package = "com.celertech.baseserver.api.audit";
+
+message AuditRecordDownstreamEvent {
+	
+	optional int64  id                = 1;
+	optional string sessionKey        = 2;
+	optional string operationId       = 3;
+	optional string operation         = 4;
+	optional string message           = 5;
+	optional string object            = 6;
+	optional string objectIdentifier  = 7;
+	optional string from              = 8;
+	optional string to                = 9;
+	optional string difference        = 10;
+	optional int64  timestampInMillis = 11;
+
+}

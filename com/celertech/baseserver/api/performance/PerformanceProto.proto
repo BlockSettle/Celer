@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package com.celertech.baseserver.api.performance;
+
+option java_package = "com.celertech.baseserver.api.performance";
+
+message CheckpointCollector {
+
+	repeated Checkpoint checkpoint = 1;
+
+}
+
+message Checkpoint {
+
+	optional string checkpoint = 1;
+	optional int64 millis = 2;
+	optional int64 nanos = 3;
+
+}
+

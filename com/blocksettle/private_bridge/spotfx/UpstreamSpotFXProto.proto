@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package com.blocksettle.private_bridge.spotfx;
+
+option java_package = "com.blocksettle.private_bridge.spotfx";
+
+import "com/blocksettle/private_bridge/enums/SideProto.proto";
+
+message FxTradeRequest
+{
+	optional string clientRequestId = 1;
+
+	required string clOrderId = 2;
+
+	optional string requestorEntity = 3;
+	optional string dealerEntity = 4;
+
+	optional com.blocksettle.private_bridge.enums.Side side = 5;
+	optional string securityId = 6;
+	optional string currency = 7;
+
+	optional double qty = 8;
+	optional double contraQty = 9;
+
+	optional double price = 10;
+
+}

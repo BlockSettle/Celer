@@ -1,0 +1,11 @@
+package com.celertech.baseserver.api.datastream;
+
+option java_package = "com.celertech.baseserver.api.datastream";
+
+message CancelDataStreamRequest {
+
+	optional string clientRequestId = 1;
+
+	optional int64 requestId = 2;
+	
+}

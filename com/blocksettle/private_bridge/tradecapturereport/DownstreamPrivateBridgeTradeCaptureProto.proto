@@ -1,0 +1,13 @@
+package com.blocksettle.private_bridge.tradecapturereport;
+
+option java_package = "com.blocksettle.private_bridge.tradecapturereport";
+
+import "com/blocksettle/private_bridge/enums/TradeStatusProto.proto";
+
+message FxTradeCaptureReportDownstreamEvent {
+	
+	optional string clientRefId = 1;
+	optional com.blocksettle.private_bridge.enums.tradestatus.TradeStatus acquirerTradeStatus = 2;
+	optional com.blocksettle.private_bridge.enums.tradestatus.TradeStatus counterPartyTradeStatus = 3;
+
+}

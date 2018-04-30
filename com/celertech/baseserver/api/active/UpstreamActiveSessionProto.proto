@@ -1,0 +1,22 @@
+package com.celertech.baseserver.api.active;
+
+option java_package = "com.celertech.baseserver.api.active";
+
+message FindAllActiveSessionsRequest {
+
+	optional string clientRequestId = 1;
+	
+}
+
+message FindAllActiveSessionsBySessionKeyRequest {
+
+	optional string clientRequestId = 1;
+	optional string sessionKey = 2;
+	
+}
+
+message UpdateOnAllActiveSessionRequest {
+
+	optional string clientRequestId = 1;
+
+}

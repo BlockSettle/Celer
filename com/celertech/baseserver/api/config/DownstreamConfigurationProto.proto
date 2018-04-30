@@ -1,0 +1,12 @@
+package com.celertech.baseserver.api.config;
+
+option java_package = "com.celertech.baseserver.api.config";
+
+message ConfigurationDetailsEvent {
+
+	optional int64 requestId = 1;
+	optional string moduleConfigSnapshot = 2;
+	optional string snapshotCreatedBy = 3;
+	optional int64 created = 4;
+	optional bool successOrFail = 5;
+}

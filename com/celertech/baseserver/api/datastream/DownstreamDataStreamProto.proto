@@ -1,0 +1,10 @@
+package com.celertech.baseserver.api.datastream;
+
+option java_package = "com.celertech.baseserver.api.datastream";
+
+message RequestDataStreamAckEvent {
+
+	optional int64 requestId = 1;
+	optional string requestClass = 2;
+	
+}
