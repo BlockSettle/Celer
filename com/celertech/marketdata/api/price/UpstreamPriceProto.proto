@@ -1,0 +1,104 @@
+package com.celertech.marketdata.api.price;
+
+import "com/celertech/marketdata/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketdata/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketdata/api/enums/MarketDataRequestTypeProto.proto";
+import "com/celertech/marketdata/api/enums/MarketDataUpdateTypeProto.proto";
+import "com/celertech/marketdata/api/enums/MarketDataBookTypeProto.proto";
+
+option java_package = "com.celertech.marketdata.api.price";
+
+message MarketDataSubscriptionRequest {
+
+	optional string clientRequestId = 1;
+	optional com.celertech.marketdata.api.enums.marketdatarequesttype.MarketDataRequestType marketDataRequestType = 2;
+	optional com.celertech.marketdata.api.enums.marketdataupdatetype.MarketDataUpdateType marketDataUpdateType = 3;
+	optional com.celertech.marketdata.api.enums.marketdatabooktype.MarketDataBookType marketDataBookType = 4;
+	optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 5;
+	optional string exchangeCode = 6;
+	optional string securityCode = 7;
+	optional string securityId = 8;
+	optional string settlementType = 9;
+	optional string settlementDate = 10;
+	optional string partyId = 11;
+	optional string requestedByUser = 12;
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 13;
+	optional string marketDataRequestId = 14;
+}
+
+
+message MarketDataDestinationSubscriptionRequest {
+
+    optional string marketDataRequestId = 1;
+    optional com.celertech.marketdata.api.enums.marketdatarequesttype.MarketDataRequestType marketDataRequestType = 2;
+    optional com.celertech.marketdata.api.enums.marketdataupdatetype.MarketDataUpdateType marketDataUpdateType = 3;
+    optional com.celertech.marketdata.api.enums.marketdatabooktype.MarketDataBookType marketDataBookType = 4;
+    optional string destinationKey = 5;
+    optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 6;
+    optional string exchangeCode = 7;
+    optional string securityCode = 8;
+    optional string securityId = 9;
+    optional string settlementType = 10;
+    optional string settlementDate = 11;
+	optional string partyId = 12;
+    optional string sessionKey = 13;
+    optional string sessionToken = 14;
+	optional string requestedByUser = 15;
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 16;
+}
+
+message MarketDataSystemSubscriptionRequest {
+
+	optional string clientRequestId = 1;
+	optional com.celertech.marketdata.api.enums.marketdatarequesttype.MarketDataRequestType marketDataRequestType = 2;
+	optional com.celertech.marketdata.api.enums.marketdataupdatetype.MarketDataUpdateType marketDataUpdateType = 3;
+	optional com.celertech.marketdata.api.enums.marketdatabooktype.MarketDataBookType marketDataBookType = 4;
+	optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 5;
+	optional string exchangeCode = 6;
+	optional string securityCode = 7;
+	optional string securityId = 8;
+	optional string settlementType = 9;
+	optional string settlementDate = 10;
+	optional string partyId = 11;
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 12;
+	optional string marketDataRequestId = 13;
+	optional string trader = 14;
+	
+}
+
+message UpdateOnAllSecurityStatusRequest {
+
+	optional string clientRequestId = 1;
+	optional string exchangeCode = 2;
+	optional string securityCode = 3;
+	optional com.celertech.marketdata.api.enums.marketdataupdatetype.MarketDataUpdateType type = 4;
+}
+
+
+message MarketDataDestinationCommand {
+
+	optional string clientRequestId = 1;
+	optional Operation operation = 2;
+	optional string marketDataDestinationKey = 3;
+	optional int32 incomingSeqNo = 4;
+	optional int32 outgoingSeqNo = 5;
+	
+	enum Operation {
+    	START = 0;
+    	STOP = 1;
+    	EOD = 2;
+    	RESET_SEQ = 3;
+	}
+}
+
+/** Used to return the MarketDataFullSnapshot with Raw Price **/
+message UpdateOnMarketDataFullSnapshotRawPriceRequest {
+   	optional string clientRequestId = 1;
+}
+
+/** 
+ ** Used to subscribe to ticker events
+ **/
+message UpdatedOnMarketDataTickerPricesRequest {
+   	optional string clientRequestId = 1;
+}

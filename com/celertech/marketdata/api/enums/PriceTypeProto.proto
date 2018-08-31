@@ -1,0 +1,9 @@
+package com.celertech.marketdata.api.enums.pricetype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum PriceType {
+
+	FULL_AMOUNT = 1;
+	VWAP = 2;
+}

@@ -1,0 +1,9 @@
+package com.celertech.marketdata.api.enums.marketdataupdatetype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum MarketDataUpdateType {
+
+	INCREMENTAL = 1;
+	FULL_SNAPSHOT = 2;
+}

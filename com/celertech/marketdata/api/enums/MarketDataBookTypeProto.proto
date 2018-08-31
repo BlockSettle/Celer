@@ -1,0 +1,10 @@
+package com.celertech.marketdata.api.enums.marketdatabooktype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum MarketDataBookType {
+
+	TOP_OF_THE_BOOK = 1;
+	FULL_BOOK = 2;
+	PRICE_LEVEL_BOOK = 3;
+}

@@ -1,0 +1,145 @@
+package com.celertech.marketdata.api.quote;
+
+import "com/celertech/marketdata/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketdata/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketdata/api/enums/QuoteCancelTypeProto.proto";
+import "com/celertech/marketdata/api/enums/QuoteRequestRejectReasonProto.proto";
+import "com/celertech/marketdata/api/enums/QuoteResponseTypeProto.proto";
+import "com/celertech/marketdata/api/enums/SideProto.proto";
+import "com/celertech/marketdata/api/enums/QuotingTypeProto.proto";
+
+import "com/celertech/marketdata/api/quote/QuoteMetadata.proto";
+
+option java_package = "com.celertech.marketdata.api.quote";
+
+message QuoteDownstreamEvent {
+
+	optional string quoteRequestId	= 1;
+	optional string quoteId	= 2;
+	optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 3;
+	optional string exchangeCode = 4;
+	optional string securityCode = 5;
+	optional string securityId = 6;
+	optional com.celertech.marketdata.api.enums.side.Side side = 7;
+	optional double bidPx = 8;
+	optional double bidSpotPx = 9;
+	optional double offerPx = 10;
+	optional double offerSpotPx = 11;
+	optional double bidSize = 12;
+	optional double offerSize = 13;
+	optional int64 quoteTimestampUtcInMillis = 14;
+	optional int64 validUntilTimeUtcInMillis = 15;
+	optional string destination = 16;
+    repeated LegQuoteGroup legQuoteGroup = 17;
+	optional bool bookAsFilled = 18;
+	optional string accountBookOn = 19;
+	
+	optional double bidMargin = 20;
+	optional double offerMargin = 21;
+	
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 22;
+	optional string account = 23;
+	
+	optional string requestedByUser = 24;
+	
+	optional com.celertech.marketdata.api.enums.quotingtype.QuotingType quotingType = 25;
+	
+	optional string settlCurrency = 26;
+	optional string rateSource = 27;
+	optional double midPx = 28;
+	
+	//SessionKey of user who made the quote
+	optional string quotedBySessionKey = 29;
+	
+	repeated KeyValue quoteMetadata = 30;
+	
+	message LegQuoteGroup {
+		optional double bidForwardPoints = 2;
+		optional double offerForwardPoints = 3;
+		optional double bidPx = 4;
+        optional double offerPx = 5;
+		optional string currency = 6;
+		optional string settlementDate = 7;
+		optional string maturityDate = 8;
+		optional string settlementType = 9;		
+    }
+}
+
+message QuoteRequestRejectDownstreamEvent {
+    optional string quoteRequestId = 1;
+    optional com.celertech.marketdata.api.enums.quoterequestrejectreason.QuoteRequestRejectReason quoteRequestRejectReason = 2;
+    repeated QuoteRequestRejectGroup quoteRequestRejectGroup = 3;
+    optional string requestedByUser = 4;
+	// time when this quote request reject is sent
+    optional int64 rejectTimestampInUtcInMillis = 5;
+    
+}
+
+message QuoteRequestRejectGroup {
+
+    optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 1;
+    optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 2;
+    optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+    optional string text = 6;
+
+}
+
+message QuoteCancelDownstreamEvent {
+    optional string quoteRequestId = 2;
+    optional string quoteId = 3;
+    optional com.celertech.marketdata.api.enums.quotecanceltype.QuoteCancelType quoteCancelType = 4;
+    optional string requestedByUser = 5;
+	// time when this quote request cancel is sent
+    optional int64 cancelTimestampInUtcInMillis = 6;
+    
+}
+
+/**
+ * Notifies the Celer Trading Client GUI that it has received a quote request
+ */
+message QuoteRequestNotification {
+	optional string requestorSessionKey = 1;
+    optional string requestorSessionToken = 2;
+    optional string quoteRequestId = 3;
+	repeated QuoteRequestNotificationGroup quoteRequestNotificationGroup = 4;
+    optional string text = 5;
+    optional string requestedByUser = 6;
+    optional string orderSource = 7;
+    
+   	// time when this quote request notification is sent
+    optional int64 timestampInUtcInMillis = 8;
+    
+    // Type of quote; valid values are AUTOMATIC, MANUAL
+    optional com.celertech.marketdata.api.enums.quotingtype.QuotingType quotingType = 9;
+    
+}
+
+message QuoteAcknowledgement {
+	optional string quoteRequestId = 1;
+	optional string quoteId = 2;
+	optional string quoteAckStatus = 3;
+	optional string quoteRejectReason = 4;
+	optional string text = 5;
+}
+
+message QuoteRequestNotificationGroup {	
+
+	optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 1;
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 2;
+	optional string exchangeCode = 4;
+	optional string securityCode = 5;
+	optional string securityId = 6;
+	optional string settlementDate = 7;
+	optional com.celertech.marketdata.api.enums.side.Side side = 8;
+	optional double qty = 9;
+	optional string currencyCode = 10;
+	optional string partyId = 11;
+	optional string maturityDate = 12;
+	optional string text = 13;
+	optional string settlementType = 14;
+	optional string accountName = 15;
+	//Used for NDFs
+    optional string rateSource = 16;
+}

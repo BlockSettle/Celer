@@ -1,0 +1,10 @@
+package com.celertech.marketdata.api.enums.quotingtype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum QuotingType {
+
+	AUTOMATIC = 1;
+	MANUAL = 2;
+	
+}

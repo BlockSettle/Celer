@@ -1,0 +1,10 @@
+package com.celertech.marketdata.api.enums.marketdataactiontype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum MarketDataActionType {
+
+	NEW = 1;
+	CHANGE = 2;
+	DELETE = 3;
+}

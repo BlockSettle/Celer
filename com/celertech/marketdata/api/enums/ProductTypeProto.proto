@@ -1,0 +1,28 @@
+package com.celertech.marketdata.api.enums.producttype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum ProductType {
+
+	SPOT = 1;
+	FORWARD = 2;
+	SWAP = 3;
+	MONEY_MARKET = 4;
+	NON_DELIVERABLE_FORWARD = 5;
+	NON_DELIVERABLE_SWAP = 6;
+	//CFD = 7;
+	SHARE = 8;
+	OUTRIGHT = 9;
+	OPTION = 10;
+	CFD_FUTURE = 11;
+	CFD_SPOT = 12;
+	CFD_SHARE = 13;
+	BITCOIN = 14;
+	BITCOIN_CASH = 15;
+	ETHEREUM = 16;
+	LITECOIN = 17;
+	OAX = 18;
+	RIPPLE = 19;
+	CRYPTO_CROSS = 20;	
+
+}

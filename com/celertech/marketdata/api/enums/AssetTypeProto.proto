@@ -1,0 +1,13 @@
+package com.celertech.marketdata.api.enums.assettype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum AssetType {
+
+	EQUITY = 1;
+	FUTURE = 2;
+	OPTION = 3;
+	FX = 4;
+	FIXED_INCOME = 5;
+	CRYPTO = 6;
+}

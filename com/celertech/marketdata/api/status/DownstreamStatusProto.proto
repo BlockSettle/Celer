@@ -1,0 +1,34 @@
+package com.celertech.marketdata.api.status;
+
+import "com/celertech/marketdata/api/enums/MarketDataTradingStatusProto.proto";
+import "com/celertech/marketdata/api/enums/TradingSessionStatusProto.proto";
+import "com/celertech/marketdata/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketdata/api/enums/ProductTypeProto.proto";
+
+option java_package = "com.celertech.marketdata.api.status";
+
+/** 
+* Sent out when a destination changes status.
+**/
+message MarketDataDestinationStatusDownstreamEvent {
+
+	optional string exchangeCode = 1;
+	optional string destinationName = 2;
+	optional com.celertech.marketdata.api.enums.marketdatatradingstatus.MarketDataTradingStatus status = 3;
+	optional int64 updated = 4;
+}
+
+message TradingSessionStatusDownstreamEvent {
+
+	optional string exchangeCode = 1;
+	optional string destinationName = 2;
+	optional string securityCode = 3;
+	optional string securityId = 4;
+	optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 5;
+	optional com.celertech.marketdata.api.enums.tradingsessionstatus.TradingSessionStatus tradingSessionStatus = 6;
+	optional string text = 7;
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 8;
+	
+}
+
+

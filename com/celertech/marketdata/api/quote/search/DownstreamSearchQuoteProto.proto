@@ -1,0 +1,18 @@
+package com.celertech.marketdata.api.quote.search;
+
+option java_package = "com.celertech.marketdata.api.quote.search";
+
+message SearchResult {
+
+	optional int64 totalHits = 1;
+	optional int32 resultsFrom = 2;
+	repeated ResponsePayload responsePayload = 3;
+}
+
+message ResponsePayload {
+
+	optional int32 resultNumber = 1;
+	required string className = 2;
+	required bytes contents = 3;
+	
+}

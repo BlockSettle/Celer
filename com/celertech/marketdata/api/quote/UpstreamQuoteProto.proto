@@ -1,0 +1,159 @@
+package com.celertech.marketdata.api.quote;
+
+import "com/celertech/marketdata/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketdata/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketdata/api/enums/QuoteCancelTypeProto.proto";
+import "com/celertech/marketdata/api/enums/QuoteRequestRejectReasonProto.proto";
+import "com/celertech/marketdata/api/enums/SideProto.proto";
+
+import "com/celertech/marketdata/api/quote/QuoteMetadata.proto";
+
+option java_package = "com.celertech.marketdata.api.quote";
+
+/**
+* Users can submit a request to receive a price for a give size from a given destination.
+*/
+message QuoteRequest {
+	optional string quoteRequestId = 1;
+	repeated QuoteRequestGroup quoteRequestGroup = 2;
+	optional string onBehalfOfUsername = 3;
+	
+	repeated KeyValue quoteMetadata = 4;
+	
+}
+
+message QuoteRequestGroup {
+
+	optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 1;
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 2;
+	optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+	optional string settlementDate = 6;
+	optional string maturityDate = 7;
+	optional com.celertech.marketdata.api.enums.side.Side side = 8;
+	optional double qty = 9;
+	optional string currency = 10;
+	optional string partyId = 11;
+	optional string settlementType = 12;
+	//Only used for NDF	
+	optional string fixingSource = 13;
+	optional string settlCurrency = 14;
+}
+
+/**
+ * To be sent in to the OMS to cancel a previous quote
+ */
+message QuoteCancelRequest {
+
+    optional string quoteRequestId = 1;
+    optional com.celertech.marketdata.api.enums.quotecanceltype.QuoteCancelType quoteCancelType = 2;
+	optional string onBehalfOfUsername = 3;
+}
+
+/**
+ * Quote to be sent from Celer Trading Dealer Intervention screen to cancel a QuoteNotification
+ */
+message QuoteCancelNotification {
+
+    optional string clientRequestId = 1;
+    optional string requestorSessionToken = 2;
+    optional string requestorSessionKey = 3;
+    optional string quoteRequestId = 4;
+    optional string quoteId = 5;
+    optional com.celertech.marketdata.api.enums.quotecanceltype.QuoteCancelType quoteCancelType = 6;
+    optional string clientTierCode  = 7;
+}
+
+
+/**
+ * Quote to be sent from Celer Trading Dealer Intervention screen in response to a QuoteRequestNotification
+ */
+message QuoteNotification {
+
+	optional string requestorSessionKey = 1;
+    optional string requestorSessionToken = 2;
+    optional string quoteRequestId  = 3;
+    optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 4;
+    optional string exchangeCode = 6;
+    optional string securityCode = 7;
+    optional string securityId = 8;
+    optional com.celertech.marketdata.api.enums.side.Side side = 9;
+	optional double bidPx = 10;
+	optional double bidSpotPx = 11;
+	optional double offerPx = 12;
+	optional double offerSpotPx = 13;
+	optional double bidSize = 14;
+	optional double offerSize = 15;
+	optional int32 quoteValidityInSecs = 16;
+    optional string clientTierCode  = 17;
+    
+    repeated LegQuoteGroup legQuoteGroup = 18;
+    repeated UnderlyingQuotePrice underlyingQuotePrice = 19;
+
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 20;
+	
+	//Account on which orders on which this quote request is executed against is booked into    
+    optional string accountBookOn = 21;
+    
+    optional double bidMargin = 22;
+    optional double offerMargin = 23;
+	optional double midPx = 24;
+
+	message LegQuoteGroup {
+		optional double bidForwardPoints = 2;
+		optional double offerForwardPoints = 3;
+		optional string currency = 4;
+		optional string settlementDate = 5;
+		optional string maturityDate = 6;
+    }
+    
+	message UnderlyingQuotePrice {
+	
+		optional string securityId = 1;
+		optional double bidSpotPx = 2;
+		optional double offerSpotPx = 3;
+		
+	}
+	
+	
+}
+
+
+/**
+ * Quote reject to be sent from Celer Trading Dealer Intervention screen to reject a quote request
+ */
+message QuoteRequestRejectNotification {
+    optional string requestorSessionKey = 1;
+    optional string requestorSessionToken = 2;
+    optional string quoteRequestId = 3;
+    optional com.celertech.marketdata.api.enums.quoterequestrejectreason.QuoteRequestRejectReason quoteRequestRejectReason = 4;
+    optional string rejectText = 5;
+    repeated QuoteRequestRejectGroupNotification quoteRequestRejectGroup = 6;
+}
+
+message QuoteRequestRejectGroupNotification {
+
+    optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 1;
+    optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 2;
+    optional string exchangeCode = 4;
+    optional string securityCode = 5;
+    optional string securityId = 6;
+    optional string text = 7;
+
+}
+
+
+/**
+ * Message to be used for when we want to find all outstanding quotes ie. On Celer Sales Dealer GUI login, go get all outstanding quotes
+ */
+message FindAllQuotesRequest {
+
+    optional string clientRequestId = 1;
+
+}
+
+//Message to subscribe to any create, update or delete quote actions
+message UpdateOnMarketDataQuoteRequest {
+
+}

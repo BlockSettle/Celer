@@ -1,0 +1,8 @@
+package com.celertech.marketdata.api.quote;
+
+option java_package = "com.celertech.marketdata.api.quote";
+
+message KeyValue {
+	optional string key = 1;
+	optional string value = 2;
+}

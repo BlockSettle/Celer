@@ -1,0 +1,12 @@
+package com.celertech.marketdata.api.quote.search;
+
+option java_package = "com.celertech.marketdata.api.quote.search";
+
+import "com/celertech/search/UpstreamSearchProto.proto";
+
+message SearchQuoteRequest {
+
+	optional string clientRequestId = 1;
+	optional com.celertech.search.SearchRequest searchRequest = 2;
+
+}

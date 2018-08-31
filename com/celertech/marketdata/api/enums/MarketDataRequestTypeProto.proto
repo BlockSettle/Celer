@@ -1,0 +1,10 @@
+package com.celertech.marketdata.api.enums.marketdatarequesttype;
+
+option java_package = "com.celertech.marketdata.api.enums";
+
+enum MarketDataRequestType {
+
+	SNAPSHOT = 1;
+	SNAPSHOT_PLUS_UPDATES = 2;
+	DISABLE_SNAPSHOTS = 3;
+}

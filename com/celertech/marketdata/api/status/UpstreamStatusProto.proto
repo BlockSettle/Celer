@@ -1,0 +1,12 @@
+package com.celertech.marketdata.api.status;
+
+option java_package = "com.celertech.marketdata.api.status";
+
+message UpdateOnDestinationStatusRequest {
+   	optional string clientRequestId = 1;
+}
+
+/** Used to return the current status for price destinations **/
+message FindAllDestinationStatusRequest {
+   	optional string clientRequestId = 1;
+}
