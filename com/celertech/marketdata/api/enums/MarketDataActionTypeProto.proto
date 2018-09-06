@@ -8,5 +8,5 @@ enum MarketDataActionType {
 
 	NEW = 1;
 	CHANGE = 2;
-	DELETE = 3;
+	MDACTION_DELETE = 3;
 }
