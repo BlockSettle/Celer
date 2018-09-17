@@ -1,5 +1,3 @@
-syntax = "proto2";
-
 package com.celertech.marketdata.api.enums.producttype;
 
 option java_package = "com.celertech.marketdata.api.enums";
@@ -25,6 +23,7 @@ enum ProductType {
 	LITECOIN = 17;
 	OAX = 18;
 	RIPPLE = 19;
-	CRYPTO_CROSS = 20;	
+	CRYPTO_CROSS = 20;
+	PRIVATE_SHARE = 21;
 
 }
