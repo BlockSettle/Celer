@@ -1,0 +1,92 @@
+package com.celertech.marketwarehouse.api.configuration;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AggregationTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TradingSessionStatusProto.proto";
+import "com/celertech/marketwarehouse/api/enums/WarehouseConfigurationTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderWorkerTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/PropertyTypeProto.proto";
+import "com/celertech/marketwarehouse/api/configuration/WarehouseConfigurationMetadata.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.configuration";
+
+message WarehouseConfigurationDownstreamEvent {
+
+    optional int64 id = 1;
+    optional string warehouseNode = 3;
+    optional string securityId = 4;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 5;
+    optional int32 throttleDelayInMillis = 8;
+    
+    //deprecated - not to be used
+    optional com.celertech.marketwarehouse.api.enums.tradingsessionstatus.TradingSessionStatus tradingSessionStatus = 9;
+    repeated WarehouseDestinationDownstreamEvent warehouseDestination = 10;
+
+    optional int64 createdTimestampUtcInMillis = 11;
+    optional int64 updatedTimestampUtcInMillis = 12;
+
+	optional string startSchedule = 15;
+	optional string stopSchedule = 16;
+	optional string eodSchedule = 17;
+
+    optional string tierCode = 20;
+    
+	repeated OrderWorkerParameterDownstreamEvent orderWorkerParameters = 21;
+	
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 22;
+    optional bool canOverridePrice = 23;
+
+    optional string orderWorker = 24;
+    optional double qtyReference = 25;
+    optional double qtyScalar = 26;
+    optional double qtyScalarCutoff = 27;
+    
+    optional string priceBookType = 28;
+    optional com.celertech.marketwarehouse.api.enums.aggregationtype.AggregationType aggregationType = 29;
+       
+	repeated KeyValue metadata = 30;
+    
+}
+
+
+
+message OrderWorkerParameterDownstreamEvent {
+
+	optional string orderWorkerName = 1;
+	optional string propertyKey = 2;
+	optional string propertyValue = 3;
+	
+}
+
+message WarehouseDestinationDownstreamEvent {
+
+    optional int64 id = 1;
+
+    optional string priceDestinationKey = 5;
+    optional string orderDestinationKey = 6;
+
+}
+
+message OrderWorkerSchemaDefinitionDownstreamEvent {
+	
+	optional string orderWorkerName = 1;
+	repeated OrderWorkerSchemaDownstreamEvent orderWorkerSchemasDownstreamEvent = 2;
+	
+}
+
+message OrderWorkerSchemaDownstreamEvent {
+
+	optional string propertyKey = 1;
+    optional com.celertech.marketwarehouse.api.enums.propertytype.PropertyType propertyType = 2;
+	optional string propertyValue = 3;
+	repeated string validValues = 4;
+}
+
+message BookStatusDownstreamEvent {
+	optional string warehouseNode = 1;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 2;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 5;
+    optional string securityId = 3;
+    optional com.celertech.marketwarehouse.api.enums.tradingsessionstatus.TradingSessionStatus tradingSessionStatus = 4;
+}

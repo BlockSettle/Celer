@@ -1,0 +1,68 @@
+package com.celertech.marketwarehouse.api.quote;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/QuoteCancelTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/QuoteRequestRejectReasonProto.proto";
+import "com/celertech/marketwarehouse/api/enums/QuoteResponseTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/SideProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.quote";
+
+
+message QuoteDownstreamEvent {
+
+	optional string quoteRequestId	= 1;
+	optional string quoteId	= 2;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 3;
+	optional string exchangeCode = 4;
+	optional string securityCode = 5;
+	optional string securityId = 6;
+	optional com.celertech.marketwarehouse.api.enums.side.Side side = 7;
+	optional double bidPx = 8;
+	optional double bidSpotPx = 9;
+	optional double offerPx = 10;
+	optional double offerSpotPx = 11;
+	optional double bidSize = 12;
+	optional double offerSize = 13;
+	optional int64 quoteTimestampUtcInMillis = 14;
+	optional int64 validUntilTimeUtcInMillis = 15;
+	optional string destination = 16;
+    repeated LegQuoteGroup legQuoteGroup = 17;
+	optional bool bookAsFilled = 18;
+	
+	message LegQuoteGroup {
+		optional double bidForwardPoints = 2;
+		optional double offerForwardPoints = 3;
+		optional double bidPx = 4;
+        optional double offerPx = 5;
+		optional string currency = 6;
+		optional string settlementDate = 7;
+		optional string maturityDate = 8;
+		optional string settlementType = 9;
+		optional string fixingSource = 10;
+    }
+}
+
+message QuoteRequestRejectDownstreamEvent {
+    optional string quoteRequestId = 1;
+    optional com.celertech.marketwarehouse.api.enums.quoterequestrejectreason.QuoteRequestRejectReason quoteRequestRejectReason = 2;
+    repeated QuoteRequestRejectGroup quoteRequestRejectGroup = 3;
+}
+
+message QuoteRequestRejectGroup {
+
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 1;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 2;
+    optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+    optional string text = 6;
+
+}
+
+message QuoteCancelDownstreamEvent {
+    optional string quoteRequestId = 2;
+    optional string quoteId = 3;
+    optional com.celertech.marketwarehouse.api.enums.quotecanceltype.QuoteCancelType quoteCancelType = 4;
+}

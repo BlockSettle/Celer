@@ -1,0 +1,12 @@
+package com.celertech.marketwarehouse.api.enums.componentstatus;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+    enum ComponentStatus {
+
+        OFF = 1;
+        STARTING = 2;
+        ON = 3;
+        STOPPING = 4;
+
+    }

@@ -1,0 +1,12 @@
+package com.celertech.marketwarehouse.api.enums.marketdataquotetype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum MarketDataQuoteType {
+
+	INDICATIVE = 1;
+	TRADEABLE = 2;
+	RESTRICTED_TRADEABLE = 3;
+	COUNTER = 4;
+	INDICATIVE_AND_TRADEABLE = 5;
+}

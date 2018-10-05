@@ -1,0 +1,11 @@
+package com.celertech.marketwarehouse.api.enums.orderworker;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum OrderWorker {
+	
+	BOOK_AS_FILLED = 1;
+	SINGLE_DESTINATION = 2;
+	QTY_BASED_SINGLE_DESTINATION = 3;
+	LIMIT_OR_BETTER = 4;
+}

@@ -1,0 +1,10 @@
+package com.celertech.marketwarehouse.api.enums.ratesource;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+
+enum RateSource {
+
+	ELECTRONIC = 1;
+	DESK = 2;
+}

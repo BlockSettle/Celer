@@ -1,0 +1,35 @@
+package com.celertech.marketwarehouse.api.enums.componentratestatus;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+/**
+ * Component rate states, in increasing order of good-ness.
+ */ 
+enum ComponentRateStatus
+{
+	// Primordial soup.
+	UNDEFINED = 0;
+	
+	// Access prohibited.
+	DENIED = 1;
+
+	// System error.
+	ERROR = 2;
+	
+	// Still cooking.
+	PENDING = 3;
+
+	// Suspect. Only visible by merchant user.
+	// Not eligible for request-for-quote.
+	STALE = 4;
+
+	// Suspect. Only visible by merchant user.
+	// Eligible for request-for-quote.
+	RFQ = 5;
+
+	// Firm but not dealable, such as when requesting for zero qty.
+	INDICATIVE = 6;
+	
+	// Firm pricing and dealable.
+	FIRM = 7;
+}

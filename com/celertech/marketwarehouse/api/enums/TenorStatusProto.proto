@@ -1,0 +1,9 @@
+package com.celertech.marketwarehouse.api.enums.tenorstatus;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum TenorStatus {
+	DI = 0;
+	AQ = 1;
+	OFF = 3;
+}

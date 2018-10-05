@@ -1,0 +1,25 @@
+package com.celertech.marketwarehouse.api.execution;
+
+import "com/celertech/marketwarehouse/api/enums/SideProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AccountTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderStatusProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ExecutionTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OptionTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/StrategyTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TimeInForceTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/HandlingInstructionProto.proto";
+import "com/celertech/marketwarehouse/api/enums/CancelRejectResponseToProto.proto";
+import "com/celertech/marketwarehouse/api/enums/CancelRejectReasonProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.execution";
+
+message EndOfDayNotification {
+	repeated string exchange = 1;
+}
+
+message DefaultOrderWorkerNotification {
+	repeated string securityId = 1;
+}

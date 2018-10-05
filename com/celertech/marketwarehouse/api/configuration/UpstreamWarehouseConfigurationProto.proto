@@ -1,0 +1,153 @@
+package com.celertech.marketwarehouse.api.configuration;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AggregationTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TradingSessionStatusProto.proto";
+import "com/celertech/marketwarehouse/api/enums/WarehouseConfigurationTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderWorkerTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/PropertyTypeProto.proto";
+import "com/celertech/marketwarehouse/api/configuration/WarehouseConfigurationMetadata.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.configuration";
+
+message UpdateOnMarketWarehouseConfigurationRequest {
+
+}
+
+message FindAllMarketWarehouseConfigurationsRequest {
+
+    optional string clientRequestId = 1;
+
+}
+
+message FindMarketWarehouseBookStatusRequest {
+    optional string clientRequestId = 1;
+    optional string warehouseNode = 2;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 3;
+    optional string securityId = 4;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 5;
+}
+
+message UpdateMarketWarehouseBookStatusRequest {
+    optional string clientRequestId = 1;
+    optional string warehouseNode = 2;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 3;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 6;
+    optional string securityId = 4;
+    optional com.celertech.marketwarehouse.api.enums.tradingsessionstatus.TradingSessionStatus tradingSessionStatus = 5;
+}
+
+
+message FindAllMarketWarehouseBookStatusesRequest {
+    optional string clientRequestId = 1;
+}
+
+message UpdateOnMarketWarehouseBookStatusRequest {
+
+}
+
+message FindAllMarketWarehouseConfigurationsForNodeRequest {
+
+    optional string clientRequestId = 1;
+
+}
+
+message CreateWarehouseConfigurationRequest {
+
+    optional string clientRequestId = 1;
+    optional string warehouseNode = 3;
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 4;
+    optional string securityId = 5;
+    optional int32 throttleDelayInMillis = 6;
+    
+	repeated CreateWarehouseDestinationRequest warehouseDestination = 9;
+
+	optional string startSchedule = 12;
+	optional string stopSchedule = 13;
+	optional string eodSchedule = 14;
+	
+    optional string tierCode = 17;
+    
+	repeated CreateOrderWorkerParameterRequest orderWorkerParameter = 18;
+	
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 19;
+    optional bool canOverridePrice = 20;
+    
+    optional string orderWorker = 21;
+    optional double qtyReference = 22;
+    optional double qtyScalar = 23;
+    optional double qtyScalarCutoff = 24;
+    
+    optional string priceBookType = 25;
+    optional com.celertech.marketwarehouse.api.enums.aggregationtype.AggregationType aggregationType = 26;
+    
+    repeated KeyValue metadata = 27;
+    
+}
+
+message FindAllOrderWorkerSchema {
+    optional string clientRequestId = 1;
+}
+
+message CreateOrderWorkerParameterRequest {
+	
+	optional string orderWorkerName = 1;
+	optional string propertyKey = 2;
+	optional string propertyValue = 3;
+
+}
+
+message UpdateWarehouseConfigurationRequest {
+
+    optional string clientRequestId = 1;
+    optional int64 id = 2;
+    optional string warehouseNode = 4;
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 5;
+    optional string securityId = 6;
+    optional int32 throttleDelayInMillis = 7;
+	repeated CreateWarehouseDestinationRequest warehouseDestination = 10;
+	
+	optional string startSchedule = 13;
+	optional string stopSchedule = 14;
+	optional string eodSchedule = 15;
+
+    optional string tierCode = 18;
+
+	repeated CreateOrderWorkerParameterRequest orderWorkerParameter = 19;
+	
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 20;
+    optional bool canOverridePrice = 21;
+    
+    optional string orderWorker = 22;
+    optional double qtyReference = 23;
+    optional double qtyScalar = 24;
+    optional double qtyScalarCutoff = 25;
+
+	optional string priceBookType = 26;
+    optional com.celertech.marketwarehouse.api.enums.aggregationtype.AggregationType aggregationType = 27;    
+    
+    repeated KeyValue metadata = 28;
+}
+
+message CreateWarehouseDestinationRequest {
+    optional string clientRequestId = 1;
+
+    optional int64 warehouseConfigurationId = 2;
+	optional string priceDestinationKey = 3;
+    optional string orderDestinationKey = 4;
+	
+}
+
+message DeleteWarehouseDestinationRequest {
+    optional string clientRequestId = 1;
+
+	optional int64 id = 2;
+}
+
+message DeleteWarehouseConfigurationRequest {
+
+    optional string clientRequestId = 1;
+	optional int64 id = 2;
+	    
+}

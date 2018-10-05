@@ -1,0 +1,9 @@
+package com.celertech.marketwarehouse.api.enums.optiontype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum OptionType {
+
+	PUT = 1;
+	CALL = 2;
+}

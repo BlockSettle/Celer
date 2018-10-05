@@ -1,0 +1,92 @@
+package com.celertech.marketwarehouse.api.forward;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.forward";
+
+/** Price engine will rely on the {active risk centre, security} to discriminate between curve definitions.
+ * All properties are required, unless explicitly stated otherwise.
+ *
+ * An implicit unique constraint exists for {curveName, assetType, securityId}
+ * not used
+ */
+message CreateForwardCurveConfigurationRequest {
+	// correlation key
+    optional string clientRequestId = 1;
+    
+	// human readable curve name
+    optional string curveName = 2;
+
+    // asset type
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 3;
+    
+    // security type
+    optional string securityId = 4;
+}
+
+/**
+* not used
+*/
+message UpdateForwardCurveConfigurationRequest {
+	// correlation key
+    optional string clientRequestId = 1;
+
+	// Immutable unique identifier
+    optional int64 id = 2;
+    
+	// human readable curve name
+    optional string curveName = 3;
+
+    // asset type
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 4;
+    
+    // security type
+    optional string securityId = 5;
+}
+
+/**
+* not used
+*/
+message DeleteForwardCurveConfigurationRequest {
+
+	optional string clientRequestId = 1;
+	optional int64 id = 2;	
+}
+
+message FindAllForwardCurveConfigurationsRequest {
+
+    optional string clientRequestId = 1;
+}
+
+message FindAllForwardCurveConfigurationsForAssetTypeAndSecurityIdRequest {
+
+    optional string clientRequestId = 1;
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 2;
+    optional string securityId = 3;
+}
+
+message UpdateOnForwardCurveConfigurationRequest {
+
+    optional string clientRequestId = 1;
+}
+
+
+message FindAllForwardPointsRequest {
+
+    optional string clientRequestId = 1;
+
+}
+
+message FindAllForwardPointForSecurityIdRequest {
+
+    optional string clientRequestId = 1;
+    optional string securityId = 2;
+	optional string tenorCode = 3;
+}
+
+// Subscribe to swap points from all curves.
+message UpdateOnMarketWarehouseForwardPointRequest {
+
+    optional string clientRequestId = 1;
+
+}

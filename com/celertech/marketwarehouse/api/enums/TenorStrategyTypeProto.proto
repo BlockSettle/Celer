@@ -1,0 +1,15 @@
+package com.celertech.marketwarehouse.api.enums.tenorstrategytype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum TenorStrategyType {
+
+	REUTERS = 1;
+	FREE_TEXT = 2;
+	FX_BROKER = 3;
+	LIBOR = 4;
+	LIQUIDITY_PROVIDER = 5;
+	LIQUIDITY_SWAP = 6;
+	FREE_TEXT_ALL_IN = 7;
+	AVERAGE_BROKER = 8;
+}

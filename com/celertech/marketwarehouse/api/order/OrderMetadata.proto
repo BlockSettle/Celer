@@ -1,0 +1,8 @@
+package com.celertech.marketwarehouse.api.order;
+
+option java_package = "com.celertech.marketwarehouse.api.order";
+
+message KeyValue {
+	optional string key = 1;
+	optional string value = 2;	
+}

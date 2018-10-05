@@ -1,0 +1,13 @@
+package com.celertech.marketwarehouse.api.execution;
+
+message UpdateOnMarketWarehouseExecutionRequest {
+
+    optional string clientRequestId = 1;
+
+}
+
+message UpdateOnMarketWarehouseExecutionRejectRequest {
+
+    optional string clientRequestId = 1;
+
+}

@@ -1,0 +1,8 @@
+package com.celertech.marketwarehouse.api.tenor;
+
+option java_package = "com.celertech.marketwarehouse.api.tenor";
+
+message KeyValue {
+	optional string key = 1;
+	optional string value = 2;	
+}

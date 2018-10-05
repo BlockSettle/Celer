@@ -1,0 +1,35 @@
+package com.celertech.marketwarehouse.api.destination;
+
+option java_package = "com.celertech.marketwarehouse.api.destination";
+
+message MarketWarehouseDestinationCommand {
+
+	optional string clientRequestId = 1;
+	optional string marketWarehouseDestinationKey = 2;
+	optional Operation operation = 3;
+	optional int32 incomingSeqNo = 4;
+	optional int32 outgoingSeqNo = 5;
+	optional WarehouseDestinationType warehouseDestinationType = 6;
+
+	enum Operation {
+    	START = 1;
+    	STOP = 2;
+    	EOD = 3;
+    	RESET_SEQ = 4;
+	}
+	
+	enum WarehouseDestinationType {
+		MARKET_DATA = 1;
+		ORDER_ROUTING = 2;
+	}
+}
+
+message FindAllMarketWarehouseDestinationsRequest {
+
+    optional string clientRequestId = 1;
+
+}
+
+message UpdateOnMarketWarehouseDestinationRequest {
+
+}

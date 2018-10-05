@@ -1,0 +1,10 @@
+package com.celertech.marketwarehouse.api.enums.handlinginstruction;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum HandlingInstruction {
+
+	AUTOMATED_NO_BROKER = 1;
+	AUTOMATED_BROKER_OK = 2;
+	MANUAL = 3;
+}

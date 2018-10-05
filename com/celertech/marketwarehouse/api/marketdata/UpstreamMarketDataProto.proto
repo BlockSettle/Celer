@@ -1,0 +1,150 @@
+package com.celertech.marketwarehouse.api.marketdata;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/MarketDataRequestSourceProto.proto";
+import "com/celertech/marketwarehouse/api/enums/MarketDataRequestTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/MarketDataUpdateTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/MarketDataEntryTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/MarketDataQuoteTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/DestinationMarketDataSourceProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.marketdata";
+
+message CreateMarketDataOverrideRequest {
+
+    optional string clientRequestId = 1;
+	optional string warehouseNode = 2;
+	optional string securityCode = 3;
+	optional string securityId = 4;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 5;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 6;
+	repeated OverrideMarketDataPriceLadderLevel overrideMarketDataPriceLadderLevel = 7;
+    optional string priceBookType = 8;
+	
+}
+
+message OverrideMarketDataPriceLadderLevel {
+	optional int32 entryPosition = 1;
+	optional OverrideMarketDataPriceSnapshotLevel bidLevel = 2;
+	optional OverrideMarketDataPriceSnapshotLevel offerLevel = 3;
+}
+
+message OverrideMarketDataPriceSnapshotLevel {
+
+	optional com.celertech.marketwarehouse.api.enums.marketdataentrytype.MarketDataEntryType marketDataEntryType = 1;
+	optional string securityId = 2;
+	optional double entryPrice = 3;
+	optional double entrySize = 4;
+    
+}
+
+message DeleteMarketDataOverrideRequest {
+
+    optional string clientRequestId = 1;
+	optional string warehouseNode = 2;
+	optional string securityCode = 3;
+	optional string securityId = 4;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 5;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 6;
+    optional string priceBookType = 7;
+    
+}
+
+// To send price price into specific price destination
+message CreateDestinationMarketDataRequest {
+
+	optional string clientRequestId = 1;
+	optional string destinationKey = 2;
+	optional string securityCode = 3;
+	optional string securityId = 4;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 5;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 6;
+	optional string settlementType = 7;
+	repeated DestinationMarketDataPriceLevel priceLevel = 8;
+	
+	optional com.celertech.marketwarehouse.api.enums.destinationmarketdatasource.DestinationMarketDataSource destinationMarketDataSource = 9;
+}
+
+message DestinationMarketDataPriceLevel {
+
+	optional com.celertech.marketwarehouse.api.enums.marketdataentrytype.MarketDataEntryType marketDataEntryType = 1;
+	optional double entryPrice = 2;
+	optional double entrySize = 3;
+	optional string entryOriginator = 4;
+	optional string settlementType = 5;
+	optional string settlementDate = 6;
+	optional double spoteRate = 7;
+	optional double forwardPoints = 8;
+	optional string currency = 9;
+	optional string fixingSource = 10;
+	optional string maturityDate = 11;
+}
+
+message MarketDataRequest {
+
+    optional string marketDataRequestId = 1;
+	optional com.celertech.marketwarehouse.api.enums.marketdatarequesttype.MarketDataRequestType marketDataRequestType = 2;
+	optional com.celertech.marketwarehouse.api.enums.marketdataupdatetype.MarketDataUpdateType marketDataUpdateType = 3;
+	optional int32 marketDepth = 4;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 5;
+	optional string securityCode = 7;
+	optional string securityId = 8;
+	optional string settlementType = 9;
+	optional string settlementDate = 10;
+	optional string maturityDate = 11;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 13;
+    optional double qty = 14;
+    optional string account = 15;
+    repeated InstrumentLegUpstreamEvent instrumentLeg = 16;
+    optional com.celertech.marketwarehouse.api.enums.marketdataquotetype.MarketDataQuoteType marketDataQuoteType = 17;
+    optional string currency = 18;
+	optional com.celertech.marketwarehouse.api.enums.marketdatarequestsource.MarketDataRequestSource marketDataRequestSource = 19;
+	optional string priceBookType = 20;
+}
+
+message MarketMerchantDestinationSubscriptionRequest {
+
+    optional string clientRequestId = 1;
+    optional com.celertech.marketwarehouse.api.enums.marketdatarequesttype.MarketDataRequestType marketDataRequestType = 2;
+    optional com.celertech.marketwarehouse.api.enums.marketdataupdatetype.MarketDataUpdateType marketDataUpdateType = 3;
+    optional string destinationKey = 4;
+    optional string exchangeCode = 5;
+    optional string securityCode = 6;
+    optional string securityId = 7;
+    optional string sessionKey = 8;
+    optional string sessionToken = 19;
+
+}
+
+message UpdateOnAllSecurityStatusRequest {
+
+	optional string clientRequestId = 1;
+	optional string exchangeCode = 2;
+	optional string securityCode = 3;
+	optional com.celertech.marketwarehouse.api.enums.marketdataupdatetype.MarketDataUpdateType type = 4;
+}
+
+message MarketMerchantDestinationCommand {
+
+	optional string clientRequestId = 1;
+	optional Operation operation = 2;
+	optional string marketDataDestinationKey = 3;
+
+	enum Operation {
+    	START = 0;
+    	STOP = 1;
+    	EOD = 2;
+	}
+}
+
+message InstrumentLegUpstreamEvent {
+
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 1;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 2;
+	optional string legSecurityId = 3;
+	optional string legSettlementType = 4;
+	optional string legSettlementDate = 5;
+	optional string fixingSource = 6;
+    
+}

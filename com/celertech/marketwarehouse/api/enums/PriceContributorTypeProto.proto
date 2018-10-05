@@ -1,0 +1,10 @@
+package com.celertech.marketwarehouse.api.enums.pricecontributortype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum PriceContributorType {
+
+	FX_BROKER = 1;
+	LIQUIDITY_PROVIDER = 2;
+
+}

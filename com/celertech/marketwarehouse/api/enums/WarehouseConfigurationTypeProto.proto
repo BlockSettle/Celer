@@ -1,0 +1,9 @@
+package com.celertech.marketwarehouse.api.enums.warehouseconfigurationtype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum WarehouseConfigurationType {
+
+	RAW = 1;
+	SYNTHETIC = 2;
+}

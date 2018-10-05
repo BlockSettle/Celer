@@ -1,0 +1,41 @@
+package com.celertech.marketwarehouse.api.order;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderStatusProto.proto";
+import "com/celertech/marketwarehouse/api/enums/SideProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TimeInForceTypeProto.proto";
+import "com/celertech/marketwarehouse/api/order/OrderMetadata.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.order";
+
+message LimitOrderBookDownstreamEvent {
+
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 1;
+	optional string securityId = 2;
+    optional com.celertech.marketwarehouse.api.enums.side.Side side = 3;
+    repeated LimitOrderSnapshotDownstreamEvent limitOrderSnapshotDownstreamEvent = 4;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 5;
+    optional string settlementType = 6;
+}
+
+message LimitOrderSnapshotDownstreamEvent {
+
+	optional int64 orderId = 1;
+	optional string externalClOrderId = 2;
+	optional string originalExternalClOrderId = 3;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 4;
+	optional string securityId = 5;
+	optional string currency = 6;
+	optional string account = 7;
+    optional double qty = 8;
+    optional double cumQty = 10;
+    optional double leavesQty = 11;
+	optional double price = 12;
+	optional com.celertech.marketwarehouse.api.enums.timeinforcetype.TimeInForceType timeInForce = 13;
+    optional com.celertech.marketwarehouse.api.enums.orderstatus.OrderStatus orderStatus = 14;
+	optional string settlementType = 15;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 16;
+	optional string settlementDate = 17;
+	repeated KeyValue orderMetadata = 18;
+}

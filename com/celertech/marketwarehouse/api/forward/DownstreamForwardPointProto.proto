@@ -1,0 +1,74 @@
+package com.celertech.marketwarehouse.api.forward;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ComponentRateStatusProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TenorStrategyTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.forward"; 
+
+message ForwardPointDownstreamEvent {
+
+    optional int64 tickId = 1;    
+    optional string brokerCode = 2;
+    optional string securityId = 3;
+    // human readable tenor value
+    optional string tenorCode = 4;
+	// these really need to be quoted as swap points
+    optional double bidForwardPoints = 5;
+    optional double offerForwardPoints = 6;
+    optional double midForwardPoints = 7;
+
+	// break out spread to permit use of interpolation strategies 
+	// further down the pricing chain  
+	optional double bidSpread = 10;
+	optional double offerSpread = 11;
+
+	optional int64 maxBidSize = 12;
+    optional int64 maxOfferSize = 13;
+
+	optional com.celertech.marketwarehouse.api.enums.componentratestatus.ComponentRateStatus bidState = 14;
+	optional com.celertech.marketwarehouse.api.enums.componentratestatus.ComponentRateStatus offerState = 15;
+
+    optional string effectiveDate = 16;
+    // missing value date indicates the requested tenor is not recognized.
+    optional string valueDate = 17;
+    optional int32 dayCount = 18;
+    
+    optional int64 updatedTimestampUtcInMillis = 8;
+
+	optional string location = 19;
+	optional string author = 20;
+	optional int32 displayScale = 21 [default = 0];
+	optional int32 displayPrecision = 22;
+
+	// Associated market curve.
+	optional int64 marketCurveId = 23;
+    
+    // Indicate if value has been derived or interpolated.
+    optional bool interpolated = 24;
+    
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 25;
+}
+
+message DeleteMarketCurveConfigurationConfirmation {
+
+    optional int64 clientRequestId = 1;
+}
+
+message MarketCurveConfigurationDownstreamEvent {
+
+    optional string clientRequestId = 1;
+
+	// Immutable unique identifier
+    optional int64 id = 2;
+    
+	// human readable curve name
+    optional string curveName = 3;
+
+    // asset type
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 4;
+    
+    // security type
+    optional string securityId = 5;
+}

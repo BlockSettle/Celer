@@ -1,0 +1,9 @@
+package com.celertech.marketwarehouse.api.enums.aggregationtype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum AggregationType {
+
+	QUANTITY = 1;
+	PRICE = 2;
+}

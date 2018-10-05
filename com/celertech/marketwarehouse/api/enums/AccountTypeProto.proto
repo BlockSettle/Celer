@@ -1,0 +1,10 @@
+package com.celertech.marketwarehouse.api.enums.accounttype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum AccountType {
+
+	CLIENT = 1;
+	HOUSE = 2;
+	RISKLESS_PRINCIPLE = 3;
+}

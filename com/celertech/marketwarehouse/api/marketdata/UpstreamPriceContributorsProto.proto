@@ -1,0 +1,20 @@
+package com.celertech.marketwarehouse.api.marketdata;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.marketdata";
+
+/** 
+ * Enumerate forward sources. Intended for use by the market marker GUI.
+ *
+ * See @DownstreamPriceContributorProto.proto
+ */
+
+message PriceContributorSubscriptionRequest {
+	optional string clientRequestId = 1;
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 2;
+	optional string securityId = 3;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 4;
+}
+

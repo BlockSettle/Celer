@@ -1,0 +1,196 @@
+package com.celertech.marketwarehouse.api.order;
+
+import "com/celertech/marketwarehouse/api/enums/SideProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/StrategyTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OptionTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TimeInForceTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AccountTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/HandlingInstructionProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ExecutionInstructionProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/baseserver/api/performance/PerformanceProto.proto";
+import "com/celertech/marketwarehouse/api/enums/WarehouseOrderRequestTypeProto.proto";
+
+import "com/celertech/marketwarehouse/api/order/OrderMetadata.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.order";
+
+message CreateFxOrderRequest {
+
+	optional string clientRequestId = 1;
+	optional string clOrderId = 2;
+	optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+	optional com.celertech.marketwarehouse.api.enums.accounttype.AccountType accountType = 6;
+	optional string account = 7;
+	optional com.celertech.marketwarehouse.api.enums.side.Side side = 8;
+	optional double qty = 9;
+	optional double price = 10;
+	optional string currency = 11;
+	
+	//Required field
+	optional com.celertech.marketwarehouse.api.enums.ordertype.OrderType orderType = 12;
+	optional string orderText = 13;
+	
+    //optional double minQty = 14;
+    //optional double maxFloor = 15;
+    
+    optional string quoteId = 16;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 17;
+    
+	//Required field
+    optional com.celertech.marketwarehouse.api.enums.timeinforcetype.TimeInForceType timeInForce = 18;
+    
+	optional string timeInForceExpiry = 19;
+    optional com.celertech.marketwarehouse.api.enums.handlinginstruction.HandlingInstruction handlingInstruction = 20;
+    optional string onBehalfOfCompId = 21;
+    optional string deliverToCompId = 22;
+    
+    repeated CreateFxStrategyLegOrder leg = 23;
+    
+    optional string externalClOrderId = 24;
+    optional com.celertech.baseserver.api.performance.CheckpointCollector checkpointCollector = 25;
+    optional string suggestedOrderWorker = 27;
+    optional string settlementType = 28;
+    
+    //Optional if warehouseOrderRequestType is STANDARD
+    optional string destinationCode = 29; 
+    
+    //Specifies if the order is to be sent directly to LP or routed via PriceBooks.  Valid values are: STANDARD or DIRECT_LP
+    //Required field
+    optional com.celertech.marketwarehouse.api.enums.warehouseorderrequesttype.WarehouseOrderRequestType warehouseOrderRequestType = 30;
+    
+    //Specifies which price book to route the order to for back to back; =marketDataRequestId
+    optional string priceBookId = 31;
+    
+    //Specifies the fixing source
+    optional string rateSource = 32;
+    
+    repeated string includedLPs = 33;
+    
+    repeated KeyValue orderMetadata = 34;
+    
+    //Specifies which price book to route the order to
+    optional string priceBookType = 35;
+    
+    // for some client that trade on certain asset types but want to follow FX workflow
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 36;
+    
+    repeated EntryOriginatorFilterPredicate entryOriginatorFilterPredicates = 37;
+    
+}
+
+message EntryOriginatorFilterPredicate {
+	optional string destinationKey = 1;
+	repeated string entryOriginators = 2;
+	optional bool isInclude = 3;
+
+}
+
+message CreateFxStrategyLegOrder {
+
+	optional string underlyingCode = 1;
+	optional string underlyingSecurityId = 2;
+	optional string legValueDate = 3;
+	optional com.celertech.marketwarehouse.api.enums.side.Side side = 4;
+	optional int32 qty = 5;
+	optional double price = 6;
+	optional double legForwardPts = 7;
+	optional double legSpotPrice = 8;
+	optional string legSettlementType = 9;
+	optional string legMaturityDate = 10;
+	optional string fixingSource = 11;
+}	
+
+message CreateFixedIncomeOrderRequest {
+
+	optional string clientRequestId = 1;
+	optional string clOrderId = 2;
+	//optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+    optional string settlementDate = 6;
+	optional com.celertech.marketwarehouse.api.enums.accounttype.AccountType accountType = 7;
+	optional string account = 8;
+	optional com.celertech.marketwarehouse.api.enums.side.Side side = 9;
+	optional double qty = 10;
+	optional double price = 11;
+	optional string currency = 12;
+	
+	//Required field
+	optional com.celertech.marketwarehouse.api.enums.ordertype.OrderType orderType = 13;
+	
+	optional string orderText = 14;
+    //optional double minQty = 15;
+    //optional double maxFloor = 16;
+    optional string quoteId = 17;
+	optional string maturityDate = 18;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 19;
+    
+    //Required field
+	optional com.celertech.marketwarehouse.api.enums.timeinforcetype.TimeInForceType timeInForce = 20;
+	optional string timeInForceExpiry = 21;
+    optional com.celertech.marketwarehouse.api.enums.handlinginstruction.HandlingInstruction handlingInstruction = 22;
+    optional string onBehalfOfCompId = 23;
+    optional string deliverToCompId = 24;
+
+    optional string externalClOrderId = 25;
+    optional string suggestedOrderWorker = 26;
+    
+    //Optional if warehouseOrderRequestType is STANDARD
+    optional string destinationCode = 27; 
+    
+    //Specifies if the order is to be sent directly to LP or routed via PriceBooks.  Valid values are: STANDARD or DIRECT_LP
+    //Required field
+	optional com.celertech.marketwarehouse.api.enums.warehouseorderrequesttype.WarehouseOrderRequestType warehouseOrderRequestType = 28;
+	
+    //Specifies which price book to route the order to
+    optional string priceBookId = 29;
+    repeated string includedLPs = 30;
+    repeated EntryOriginatorFilterPredicate entryOriginatorFilterPredicates = 31;
+}
+
+message CancelOrderRequest {
+
+	optional string clientRequestId = 1;
+	optional int64 orderId = 2;
+	optional string clOrdId = 3;
+	optional string origClOrdId = 4;
+    optional string onBehalfOfCompId = 5;
+    optional string deliverToCompId = 6;
+}
+
+message AmendOrderRequest {
+
+	optional string clientRequestId = 1;
+	optional int64 orderId = 2;
+	optional string clOrdId = 3;
+	optional string origClOrdId = 4;
+	optional string account = 5;
+	optional double qty = 6;
+	optional double price = 7;
+	optional string orderText = 8;
+	optional string onBehalfOfCompId = 11;
+    optional string deliverToCompId = 12;
+    optional string quoteId = 13;
+}
+
+message FindAllAssignedOrderSnapshots {
+
+    optional string clientRequestId = 1;
+}
+
+message FindAllOrderSnapshotsByClientOrderId {
+
+    optional string clientRequestId = 1;
+    optional string clOrderId = 2;
+}
+
+message FindAllOrderSnapshotsByOrderId {
+
+    optional string clientRequestId = 1;
+    optional int64 orderId = 2;
+}

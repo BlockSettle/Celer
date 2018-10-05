@@ -1,0 +1,8 @@
+package com.celertech.marketwarehouse.api.enums.warehouseorderrequesttype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum WarehouseOrderRequestType {
+	STANDARD = 1;
+	DIRECT_LP = 2;
+}

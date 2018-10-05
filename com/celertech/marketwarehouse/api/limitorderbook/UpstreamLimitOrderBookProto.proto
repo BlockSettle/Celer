@@ -1,0 +1,16 @@
+package com.celertech.marketwarehouse.api.limitorderbook;
+
+option java_package = "com.celertech.marketwarehouse.api.limitorderbook";
+
+message UpdateOnLimitOrderBookRequest {
+
+	optional string clientRequestId = 1;
+    
+}
+
+message FindAllLimitOrderBookRequest {
+
+	optional string clientRequestId = 1;
+    
+}
+

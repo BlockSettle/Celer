@@ -1,0 +1,242 @@
+package com.celertech.marketwarehouse.api.order;
+
+import "com/celertech/marketwarehouse/api/enums/SideProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/AccountTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OrderStatusProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ExecutionTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/OptionTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/StrategyTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TimeInForceTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/HandlingInstructionProto.proto";
+import "com/celertech/marketwarehouse/api/enums/CancelRejectResponseToProto.proto";
+import "com/celertech/marketwarehouse/api/enums/CancelRejectReasonProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/WarehouseOrderTypeProto.proto";
+
+import "com/celertech/marketwarehouse/api/order/OrderMetadata.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.order";
+
+message FxOrderSnapshotDownstreamEvent {
+
+    optional int64 id = 1;
+    optional int64 orderId = 2;
+    optional string externalClOrderId = 3;
+    optional string originalExternalClOrderId = 4;
+    optional string externalOrderId = 5;
+    optional string secondaryExecId = 6;
+    //optional string exchangeCode = 7;
+    optional string securityCode = 8;
+    optional string securityId = 9;
+    optional string securityIdSource = 10;
+	optional string externalSecurityCode = 11;
+	optional string externalSecurityId = 12;
+    optional com.celertech.marketwarehouse.api.enums.ordertype.OrderType orderType = 13;
+    optional com.celertech.marketwarehouse.api.enums.strategytype.StrategyType strategyType = 14;
+    optional com.celertech.marketwarehouse.api.enums.accounttype.AccountType accountType = 15;
+    optional string account = 16;
+    optional com.celertech.marketwarehouse.api.enums.side.Side side = 17;
+    optional double qty = 18;
+    optional double price = 19;
+    optional string currency = 20;
+    optional string trader = 21;
+    optional double lastPx = 25;
+    optional double lastQty = 26;
+    optional double cumQty = 27;
+    optional double leavesQty = 28;
+    optional double avgPx = 29;
+    optional com.celertech.marketwarehouse.api.enums.orderstatus.OrderStatus orderStatus = 30;
+    optional com.celertech.marketwarehouse.api.enums.executiontype.ExecutionType executionType = 31;
+    optional string orderText = 32;
+    optional string info = 33;
+
+    optional com.celertech.marketwarehouse.api.enums.handlinginstruction.HandlingInstruction handlingInstruction = 34;
+    optional int32 orderVersion = 36;
+    optional string celerClOrderId = 38;
+    optional string originalCelerClOrderId = 39;
+    optional int64 createdTimestampUtcInMillis = 42;
+    optional int64 updatedTimestampUtcInMillis = 43;
+    optional string onBehalfOfCompId = 44;
+    optional string deliverToCompId = 45;
+    //optional string externalExchangeCode = 46;
+    optional com.celertech.marketwarehouse.api.enums.timeinforcetype.TimeInForceType timeInForce = 47;
+	optional string timeInForceExpiry = 48;
+	//optional double minQty = 49;
+    //optional double maxFloor = 50;
+    optional string quoteId = 51; 
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 52;
+    optional string settlementType = 61;
+     
+    repeated int64 checkpointTimestamp = 53;
+    optional int64 refId = 54;
+    optional bool bookAsFilled = 55;
+    optional string destinationKey = 56;
+    repeated FxLeg leg = 57;
+    optional string destinationBackOfficeKey = 58;
+    
+    repeated string referenceClOrderIds = 59;
+    
+    optional com.celertech.marketwarehouse.api.enums.warehouseordertype.WarehouseOrderType warehouseOrderType = 60;
+    
+    repeated KeyValue orderMetadata = 62;
+    
+    optional string sourceExecutionId = 63;
+
+    optional string tradeMatchId = 64;
+}
+
+message FixedIncomeOrderSnapshotDownstreamEvent {
+
+    optional int64 id = 1;
+    optional int64 orderId = 2;
+    optional string externalClOrderId = 3;
+    optional string originalExternalClOrderId = 4;
+    optional string externalOrderId = 5;
+    optional string secondaryExecId = 6;
+    //optional string exchangeCode = 7;
+    optional string securityCode = 8;
+    optional string securityId = 9;
+    optional com.celertech.marketwarehouse.api.enums.ordertype.OrderType orderType = 10;
+    optional com.celertech.marketwarehouse.api.enums.strategytype.StrategyType strategyType = 11;
+    optional com.celertech.marketwarehouse.api.enums.accounttype.AccountType accountType = 12;
+    optional string account = 13;
+    optional com.celertech.marketwarehouse.api.enums.side.Side side = 14;
+    optional double qty = 15;
+    optional double price = 16;
+    optional string currency = 17;
+    optional string trader = 18;
+    optional double lastPx = 19;
+    optional double lastQty = 20;
+    optional double cumQty = 21;
+    optional double leavesQty = 22;
+    optional double avgPx = 24;
+    optional com.celertech.marketwarehouse.api.enums.orderstatus.OrderStatus orderStatus = 25;
+    optional com.celertech.marketwarehouse.api.enums.executiontype.ExecutionType executionType = 26;
+    optional string orderText = 27;
+    optional string info = 28;
+
+    optional com.celertech.marketwarehouse.api.enums.handlinginstruction.HandlingInstruction handlingInstruction = 29;
+    optional int64 parentOrderId = 30;
+    optional int32 orderVersion = 31;
+    optional bool isParentOrder = 32;
+    optional string celerClOrderId = 33;
+    optional string originalCelerClOrderId = 34;
+    optional bool isChildOrder = 35;
+    optional int64 createdTimestampUtcInMillis = 36;
+    optional int64 updatedTimestampUtcInMillis = 37;
+    optional string onBehalfOfCompId = 38;
+    optional string deliverToCompId = 39;
+    optional com.celertech.marketwarehouse.api.enums.timeinforcetype.TimeInForceType timeInForce = 40;
+    optional string timeInForceExpiry = 41;
+    //optional double minQty = 42;
+    //optional double maxFloor = 43;
+    optional string quoteId = 44;
+    
+    optional string maturityDate = 45;
+    optional string settlementDate = 46;
+    optional string destinationBackOfficeKey = 47;
+    
+    repeated string referenceClOrderIds = 48;
+    optional com.celertech.marketwarehouse.api.enums.warehouseordertype.WarehouseOrderType warehouseOrderType = 49;
+    
+    optional string sourceExecutionId = 50;
+}
+
+message FxLeg {
+    optional string underlyingExchangeCode = 2;
+    optional string underlyingSecurityCode = 3;
+    optional string underlyingSecurityId = 4;
+    optional string settlementDate = 5;
+    optional double qty = 6;
+    optional com.celertech.marketwarehouse.api.enums.side.Side side = 7;
+    optional double price = 8;
+    optional double legForwardPts = 9;
+    optional double legSpotPrice = 10;
+    optional string legMaturityDate = 11;
+    optional string fixingSource = 12;
+    optional string settlementType = 13;
+}
+
+
+message OrderRoutingDestinationCommandDownstreamEvent {
+
+	optional Operation operation = 2;
+	optional string orderRoutingProviderName = 3;
+	optional string exchangeName = 4;
+
+	enum Operation {
+    	START = 0;
+    	STOP = 1;
+    	EOD = 2;
+	}
+	
+}
+
+message CancelOrderRequestRejectDownstreamEvent {
+
+    optional com.celertech.marketwarehouse.api.enums.cancelrejectresponseto.CancelRejectResponseTo cancelRejectResponseTo = 1;
+    optional com.celertech.marketwarehouse.api.enums.cancelrejectreason.CancelRejectReason cancelRejectReason = 2;
+    optional int64 orderId = 3;
+    optional string externalOrderId = 4;
+    optional string externalClOrderId = 5;
+    optional string originalExternalClOrderId = 6;
+    optional com.celertech.marketwarehouse.api.enums.orderstatus.OrderStatus orderStatus = 7;
+    optional double qty = 8;
+    optional double price = 9;
+    optional double leavesQty = 10;
+    optional string text = 11;
+    optional string onBehalfOfCompId = 12;
+    optional string deliverToCompId = 13;
+    optional com.celertech.marketwarehouse.api.enums.handlinginstruction.HandlingInstruction handlingInstruction = 14;
+    optional string trader = 17;
+    optional int64 createdTimestampUtcInMillis = 18;
+}
+
+message CreateOrderRequestRejectDownstreamEvent {
+
+    optional int64 refSequenceNum = 1;
+    optional string refMessageType = 2;
+    optional string rejectReason = 3;
+	optional string onBehalfOfCompId = 4;
+	//The fields below are to allow executionReport rejects with additional fields.
+	optional string externalClOrderId = 5;
+	optional com.celertech.marketwarehouse.api.enums.side.Side side = 6;
+	optional string securityCode = 7;
+    optional string securityId = 8;
+    optional string securityIdSource = 9;
+	optional string externalSecurityCode = 10;
+	optional string externalSecurityId = 11;
+	optional double qty = 12;
+	optional com.celertech.marketwarehouse.api.enums.ordertype.OrderType orderType = 13;
+	optional double price = 14;
+	optional com.celertech.marketwarehouse.api.enums.timeinforcetype.TimeInForceType timeInForce = 15;
+	optional com.celertech.marketwarehouse.api.enums.handlinginstruction.HandlingInstruction handlingInstruction = 16;
+	optional int64 createdTimestampUtcInMillis = 17;
+ 	//optional string exchangeCode = 18;
+    //optional string externalExchangeCode = 19;
+ 	optional string execId = 20;
+    optional string deliverToCompId = 21;
+}
+
+message OrderRejectDownstreamEvent {
+
+    optional string clOrdId = 1;
+    optional com.celertech.marketwarehouse.api.enums.orderstatus.OrderStatus orderStatus = 2;
+    optional string text = 3;
+
+}
+
+message OrderCancelRejectDownstreamEvent {
+
+    optional string clOrdId = 1;
+    optional com.celertech.marketwarehouse.api.enums.orderstatus.OrderStatus orderStatus = 2;
+    optional string text = 3;
+
+}
+
+message TradeAmendmentExceptionDownstreamEvent {
+	optional int64 orderId = 1;
+	optional string message = 2;
+} 

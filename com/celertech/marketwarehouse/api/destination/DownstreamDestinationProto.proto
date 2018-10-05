@@ -1,0 +1,17 @@
+package com.celertech.marketwarehouse.api.destination;
+
+import "com/celertech/marketwarehouse/api/enums/ComponentStatusProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.destination";
+
+message MarketWarehouseDestinationDownstreamEvent {
+    
+    optional string marketWarehouseDestinationKey = 1;
+    optional com.celertech.marketwarehouse.api.enums.componentstatus.ComponentStatus componentStatus = 2;
+    optional WarehouseDestinationType warehouseDestinationType = 3;
+    
+	enum WarehouseDestinationType {
+		MARKET_DATA = 1;
+		ORDER_ROUTING = 2;
+	}
+}

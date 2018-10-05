@@ -1,0 +1,22 @@
+package com.celertech.marketwarehouse.api.enums.producttype;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum ProductType {
+
+	SPOT = 1;
+	FORWARD = 2;
+	SWAP = 3;
+	DUAL_CURRENCY_DEPOSIT = 4;
+	MONEY_MARKET = 5;
+	NON_DELIVERABLE_FORWARD = 6;
+	NON_DELIVERABLE_SWAP = 7;
+	PRIVATE_SHARE = 8;				//Valid for AssetType=BITCOIN only
+	BITCOIN = 9;
+	BITCOIN_CASH = 10;
+	ETHEREUM = 11;
+	LITECOIN = 12;
+	OAX = 13;
+	RIPPLE = 14;
+	CRYPTO_CROSS = 15;
+}

@@ -1,0 +1,104 @@
+package com.celertech.marketwarehouse.api.tenor;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TenorStrategyTypeProto.proto";
+import "com/celertech/marketwarehouse/api/tenor/UpstreamTenorConfigurationProto.proto";
+import "com/celertech/marketwarehouse/api/enums/TenorStatusProto.proto";
+
+import "com/celertech/marketwarehouse/api/tenor/TenorConfigurationMetadata.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.tenor";
+
+message TenorConfigurationDownstreamEvent {
+
+    optional int64 id = 1;
+    
+    // fk to MarketCurve.id
+    optional int64 marketCurveId = 15;    
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 2;
+    optional string securityId = 3;
+    optional string tenorCode = 4;
+
+	// Effective date in local date format ('CCYY-MM-DD').
+	// Typically rolls at 5pm EST, but schedule depends on market convention (and accuracy and timeliness of upstream provider).
+    optional string effectiveDate = 16;
+    
+	// Value date in local date format ('CCYY-MM-DD') implied by the tenor, relative to effective date (if provided - otherwise today's trade date).
+	// Value date may roll in advance of the effectiveDate, according to the settlement center schedule and trading preference.
+	//  e.g. Auckland close for NZD and Manila close for PHP, in advance of the effectiveDate.
+	//
+	// If supplied, when resolving fwd pillars the day count between valueDate and effectiveDate will take precedence. 
+	// The server will compare against the internal calendar and monitor for any discrepancies.
+	optional string valueDate = 17;
+
+        
+    optional double bidPx = 5;
+    optional double offerPx = 6;
+    optional double midPx = 18;
+
+    // Auto-quote quantity in base currency.
+    // If enabled, any requested amount exceeding the stipulated size will render the quote indicative.
+    // A value of less than zero will forbid quoting.
+    // Interpolation will take the most conservative size of straddling pillars.
+    optional int32 bidSize = 19 [default = 0];
+    optional int32 offerSize = 20 [default = 0];
+    // Determine whether to cap auto-quote limits.
+    optional bool ignoreSize = 21 [default = true];
+        
+    optional com.celertech.marketwarehouse.api.enums.tenorstrategytype.TenorStrategyType tenorStrategyType = 7;
+    
+    /**
+     * Looks to be weird to be using the ReutersSubscription object from the upstream proto in the UpstreamTenorConfigurationProto.
+     * However since both the UpstreamTenorConfigurationProto and DownstreamTenorConfigurationProto are in the same java packages, we
+     * can't have the same Class name.  We could have the same object but with different names, but that
+     * might be overkill so just using the upstream object for now
+     */
+    repeated ReutersSubscription reutersSubscription = 8;
+    
+    optional string brokerCode = 10;
+    optional double spread = 11;
+	optional double skew = 12;
+    optional int64 createdTimestampUtcInMillis = 13;
+    optional int64 updatedTimestampUtcInMillis = 14;
+
+	optional bool requiredPillar = 22 [default = true];    
+	// optional scale factor used to normalise prices
+	optional double scaleFactor = 24 [default = 0];
+	// optional scale for adjusting display convention
+	optional double displayScale = 25 [default = 0];
+	
+	// optionally specify number of significant figures to round spread.
+	// Useful for professional quoting of interpolated / broken dated requests irrespective of yield.
+	optional int32 spreadPrecisionInSignificantFigures = 26;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 27;
+	
+	optional com.celertech.marketwarehouse.api.enums.tenorstatus.TenorStatus tenorStatus = 28  [default = AQ];
+	
+	//CurveType = ONSHORE for onshore, CurveType = null for regular or offshore
+	optional string curveType = 29;
+	
+	repeated KeyValue tenorConfigurationMetadata = 30;
+
+}
+
+message DeleteTenorConfigurationConfirmation {
+
+    optional int64 id = 1;
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 2;
+    optional string securityId = 3;
+    optional string tenorCode = 4;
+	//CurveType = ONSHORE for onshore, CurveType = null for regular or offshore
+	optional string curveType = 5;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 6;
+}
+
+message DeleteMarketCurveConfigurationConfirmation {
+
+    optional int64 id = 1;
+    optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 2;
+    optional string securityId = 3;
+ 
+}
+
+

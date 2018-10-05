@@ -1,0 +1,15 @@
+package com.celertech.marketwarehouse.api.enums.tradingsessionstatus;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum TradingSessionStatus {
+
+	UNKNOWN = 0;
+	HALTED = 1;
+	OPEN = 2;
+	CLOSED = 3;
+	PRE_OPEN = 4;
+	PRE_CLOSE = 5;
+	REQUEST_REJECTED = 6;
+
+}

@@ -1,0 +1,51 @@
+package com.celertech.marketwarehouse.api.marketdata;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/PriceContributorTypeProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.marketdata"; 
+
+/** 
+ * Receive list of eligible broker forward sources. 
+ * Intended for use by the market market GUI to discover eligible broker sources and reconfigure the display accordingly.
+ *
+ * FREE_TEXT tenor strategy type is implicitly allowed.
+ *
+ * See @UpstreamPriceContributorProto.proto
+ */
+message PriceContributor {
+    // meaningful if/when persisted
+    optional int64 id = 1;
+    
+    // e.g. TTKL
+    optional string contributor = 2;
+    
+    // e.g. EUR/USD
+    optional string securityId = 3;
+    
+    // e.g. "EUR1W=TTKL"
+    optional string canonicalSymbol = 4;
+    
+    // Standard tenor code corresponding to canonical symbol. 
+    // Tenor should be recognized by the value date service, e.g. "1W", "2016-02-29" 
+    optional string tenorCode = 5;
+    
+    // Scale factor applied when normalizing contributed rates. 
+    optional double scaleFactor = 6;
+    
+	optional com.celertech.marketwarehouse.api.enums.pricecontributortype.PriceContributorType priceContributorType = 7;
+    // TODO expose room status
+}
+
+message PriceContributorsDownstreamEvent {
+    optional string warehouseNode = 1;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 2;
+    optional string securityId = 3;
+    optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 4;
+
+	/* e.g. REUTERS */
+    optional string destination = 5;
+
+	repeated PriceContributor contributors = 6;
+}

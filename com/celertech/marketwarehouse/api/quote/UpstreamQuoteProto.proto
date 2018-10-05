@@ -1,0 +1,108 @@
+package com.celertech.marketwarehouse.api.quote;
+
+import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/QuoteCancelTypeProto.proto";
+import "com/celertech/marketwarehouse/api/enums/QuoteRequestRejectReasonProto.proto";
+import "com/celertech/marketwarehouse/api/enums/SideProto.proto";
+
+option java_package = "com.celertech.marketwarehouse.api.quote";
+
+/**
+* Users can submit a request to receive a price for a give size from a given destination.
+*/
+message QuoteRequest {
+	optional string quoteRequestId = 1;
+	repeated QuoteRequestGroup quoteRequestGroup = 2;
+}
+
+message QuoteRequestGroup {
+
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 1;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 2;
+	optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+	optional string settlementDate = 6;
+	optional string maturityDate = 7;
+	optional com.celertech.marketwarehouse.api.enums.side.Side side = 8;
+	optional double qty = 9;
+	optional string currency = 10;
+	optional string partyId = 11;
+	optional string settlementType = 12;
+}
+
+/**
+ * To be sent in to the warehouse to cancel a previous quote
+ */
+message QuoteCancelRequest {
+
+	// FIX tag 131
+    optional string quoteRequestId = 1;
+
+    //Identifies the type of quote cancel; valid corresponds to that of FIX tag 298
+    optional com.celertech.marketwarehouse.api.enums.quotecanceltype.QuoteCancelType quoteCancelType = 2;
+
+    // FIX tag 117
+    optional string quoteId = 3;
+
+    optional string requestorSessionKey = 4;
+    optional string requestorSessionToken = 5;
+
+    repeated InstrumentLegUpstreamEvent instrumentLegs = 6;
+
+}
+
+/**
+ * Message to be used for when we want to find all outstanding quotes
+ */
+message FindAllQuotesRequest {
+
+    optional string clientRequestId = 1;
+
+}
+
+/**
+ * Message sent to warehouse to inform of incoming quote notification.
+ */
+message QuoteNotification {
+
+	optional string quoteRequestId = 1;
+	optional string quoteOriginSessionKey = 2; 
+	optional string quoteOriginSessionToken = 3;
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 4;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 5;
+	optional string exchangeCode = 6;
+	optional string securityCode = 7;
+	optional string securityId = 8;
+	optional com.celertech.marketwarehouse.api.enums.side.Side side = 9;
+	optional double bidPx = 10;
+	optional double bidSpotPx = 11;
+	optional double bidSize = 12;
+	optional double offerPx = 13;
+	optional double offerSpotPx = 14;
+	optional double offerSize = 15;
+	optional int32 quoteValidityInSecs = 16;
+    //authentication address; specific to bitcoin
+	optional string dealerAuthenticationAddress = 17;
+	//contra-Quantity; specific to Peer Fx Spot
+	optional double bidContraQty = 18;
+	optional double offerContraQty = 19;
+	optional string account = 20;
+	// represents a on-chain transaction by dealer
+	optional bytes dealerTransaction = 21;
+
+	// Optional quoteId field for Bitcoin; If specified, the quoteId will be reflected back in MarketDataFullSnapshot entryId field
+	optional string quoteId = 22;
+	optional string currency = 23;
+}
+
+message InstrumentLegUpstreamEvent {
+
+	optional com.celertech.marketwarehouse.api.enums.assettype.AssetType assetType = 1;
+	optional com.celertech.marketwarehouse.api.enums.producttype.ProductType productType = 2;
+	optional string legSecurityId = 3;
+	optional string legSettlementType = 4;
+	optional string legSettlementDate = 5;
+    
+}

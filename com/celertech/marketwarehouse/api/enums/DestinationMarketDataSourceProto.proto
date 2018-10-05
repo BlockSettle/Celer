@@ -1,0 +1,9 @@
+package com.celertech.marketwarehouse.api.enums.destinationmarketdatasource;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum DestinationMarketDataSource {
+
+	MARKET_MERCHANT = 1;
+	MARKET_MAKER = 2;
+}

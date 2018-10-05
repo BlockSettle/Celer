@@ -1,0 +1,9 @@
+package com.celertech.marketwarehouse.api.enums.marketdatarequestsource;
+
+option java_package = "com.celertech.marketwarehouse.api.enums";
+
+enum MarketDataRequestSource {
+
+	ESP = 1;
+	RFQ = 2;
+}

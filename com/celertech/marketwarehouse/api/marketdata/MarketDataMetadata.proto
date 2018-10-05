@@ -1,0 +1,10 @@
+package com.celertech.marketwarehouse.api.marketdata;
+
+option java_package = "com.celertech.marketwarehouse.api.marketdata";
+
+message KeyValue {
+
+	optional string key = 1;
+	optional int64 value = 2;
+
+}
