@@ -51,23 +51,23 @@ GENERATE_PROTO(com/celertech/marketdata/api/enums)
 GENERATE_PROTO(com/celertech/marketdata/api/price)
 GENERATE_PROTO(com/celertech/staticdata/api/user/property)
 
-# GENERATE_PROTO(com/blocksettle/enums)
+GENERATE_PROTO(com/blocksettle/enums)
 
 # BS_TERMINAL_API depends on BS_COMMON_ENUMS
 # GENERATE_PROTO(com/blocksettle/terminal)
 GENERATE_PROTO(com/celertech/marketmerchant/api/quote)
 GENERATE_PROTO(com/celertech/marketmerchant/api/order)
 GENERATE_PROTO(com/celertech/marketmerchant/api/order/bitcoin)
-# GENERATE_PROTO(com/blocksettle/private_bridge/accounts/)
-# GENERATE_PROTO(com/blocksettle/private_bridge/enums/)
-# GENERATE_PROTO(com/blocksettle/private_bridge/spotfx/)
-# GENERATE_PROTO(com/blocksettle/private_bridge/spotxbt/)
-# GENERATE_PROTO(com/blocksettle/private_bridge/eod/)
-GENERATE_PROTO(com/celertech/staticdata/api/account/)
-GENERATE_PROTO(com/celertech/staticdata/api/user/account/)
-GENERATE_PROTO(com/celertech/piggybank/api/enums/)
+GENERATE_PROTO(com/blocksettle/private_bridge/accounts)
+GENERATE_PROTO(com/blocksettle/private_bridge/enums)
+GENERATE_PROTO(com/blocksettle/private_bridge/spotfx)
+GENERATE_PROTO(com/blocksettle/private_bridge/spotxbt)
+GENERATE_PROTO(com/blocksettle/private_bridge/eod)
+GENERATE_PROTO(com/celertech/staticdata/api/account)
+GENERATE_PROTO(com/celertech/staticdata/api/user/account)
+GENERATE_PROTO(com/celertech/piggybank/api/enums)
 GENERATE_PROTO(com/celertech/piggybank/api/subledger)
-GENERATE_PROTO(com/celertech/baseserver/api/exception/)
+GENERATE_PROTO(com/celertech/baseserver/api/exception)
 
 ADD_LIBRARY(${CELER_PROTO_LIB_NAME}
    ${GENERATED_SOURCE_FILES}
