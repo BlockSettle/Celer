@@ -1,7 +1,6 @@
-syntax = "proto2";
-
 package com.celertech.marketmerchant.api.securitydefinition;
 
+import "com/celertech/marketmerchant/api/enums/AssetTypeProto.proto";
 import "com/celertech/marketmerchant/api/enums/PriceRoundingModeProto.proto";
 import "com/celertech/marketmerchant/api/enums/ProductTypeProto.proto";
 
@@ -16,11 +15,15 @@ message SecurityDefinitionDownstreamEvent {
 	optional int32 pipDefinition = 6;
 	optional int32 inverseDecimalPlaces = 7;
 	optional int32 inversePipDefinition = 8;
-
+	
 	optional int64 createdTimestampUtcInMillis = 9;
-   optional int64 updatedTimestampUtcInMillis = 10;
-   optional com.celertech.marketmerchant.api.enums.producttype.ProductType productType = 11;
-   repeated string group = 12;
+    optional int64 updatedTimestampUtcInMillis = 10;
+   	optional com.celertech.marketmerchant.api.enums.producttype.ProductType productType = 11;
+   	repeated string group = 12;
+   	
+   	optional string sourceSecurityIdA = 13;
+    optional string sourceSecurityIdB = 14;
+    optional com.celertech.marketmerchant.api.enums.assettype.AssetType assetType = 15;
 }
 
 message DeleteSecurityDefinitionConfirmation {
