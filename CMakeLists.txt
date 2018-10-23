@@ -69,6 +69,10 @@ GENERATE_PROTO(com/celertech/piggybank/api/enums)
 GENERATE_PROTO(com/celertech/piggybank/api/subledger)
 GENERATE_PROTO(com/celertech/baseserver/api/exception)
 
+GENERATE_PROTO(com/celertech/marketwarehouse/api/enums/)
+GENERATE_PROTO(com/celertech/marketwarehouse/api/configuration)
+GENERATE_PROTO(com/celertech/marketmerchant/api/securitydefinition)
+
 ADD_LIBRARY(${CELER_PROTO_LIB_NAME}
    ${GENERATED_SOURCE_FILES}
    ${GENERATED_HEADER_FILES}
