@@ -73,6 +73,10 @@ GENERATE_PROTO(com/celertech/marketwarehouse/api/enums/)
 GENERATE_PROTO(com/celertech/marketwarehouse/api/configuration)
 GENERATE_PROTO(com/celertech/marketmerchant/api/securitydefinition)
 
+GENERATE_PROTO(com/celertech/staticdata/api/enums)
+GENERATE_PROTO(com/celertech/staticdata/api/security)
+GENERATE_PROTO(com/celertech/staticdata/api/property)
+
 ADD_LIBRARY(${CELER_PROTO_LIB_NAME}
    ${GENERATED_SOURCE_FILES}
    ${GENERATED_HEADER_FILES}
