@@ -9,5 +9,5 @@ enum AssetType {
 	EQUITY = 3;
 	FX = 4;
 	FIXED_INCOME = 5;
-	CRYPTO = 6
+	CRYPTO = 6;
 }
