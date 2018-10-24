@@ -6,6 +6,8 @@ import "com/celertech/staticdata/api/enums/SideProto.proto";
 import "com/celertech/staticdata/api/enums/StrategyTypeProto.proto";
 import "com/celertech/staticdata/api/enums/ProductTypeProto.proto";
 import "com/celertech/staticdata/api/property/PropertyProto.proto";
+import "com/celertech/staticdata/api/security/SecurityListingProto.proto";
+import "com/celertech/search/UpstreamSearchProto.proto";
 
 option java_package = "com.celertech.staticdata.api.security";
 
@@ -269,6 +271,8 @@ message CreateFxMaturitySecurity {
     
 	repeated CreateFxMaturityAlias alias = 17;
     repeated com.celertech.staticdata.api.property.Property property = 18;
+	optional string splitCurrency = 19;
+	optional int32 forwardDivisor = 20;
 }
 
 
@@ -593,6 +597,8 @@ message UpdateFxMaturitySecurity {
     
     repeated com.celertech.staticdata.api.property.Property property = 14;
     
+    optional string splitCurrency = 15;
+    optional int32 forwardDivisor = 16;
 }
 
 message UpdateFxMaturitySecurityGroup {
@@ -724,6 +730,10 @@ message FindAllFxMaturitiesForExchangeRequest {
 	optional int64 exchangeId = 3;
 }
 
+message FindAllFxMaturitiesRequest {
+	optional string clientRequestId = 1;
+}
+
 message FindAllFxCurrencyGroupForExchangeRequest {
 
 	optional string clientRequestId = 1;
@@ -751,6 +761,7 @@ message FindListingRequest {
     optional string exchangeCode = 3;
     optional string securityId = 4;
     optional bool isStrategy = 5;
+   	optional string securityCode = 6;
     
 }
 
@@ -803,5 +814,76 @@ message FindAllFxSplitValueDateSecurities {
 message UpdateOnStaticDataFxCurrencyGroupRequest {
 
 	optional string clientRequestId = 1;
+
+}
+
+
+message CreateSecurityListingRequest {
+	
+	optional string clientRequestId = 1;
+	optional com.celertech.staticdata.api.enums.assettype.AssetType assetType = 2;
+	optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+	optional bool enabled = 6;
+	repeated SecurityListingParameter parameter = 7;
+	repeated PersistSecurityListingAlias alias = 8;
+	
+}
+
+message UpdateSecurityListingRequest {
+
+	optional string clientRequestId = 1;
+	optional int64 id = 2;
+	optional com.celertech.staticdata.api.enums.assettype.AssetType assetType = 3;
+	optional string exchangeCode = 4;
+	optional string securityCode = 5;
+	optional string securityId = 6;
+	optional bool enabled = 7;
+	repeated SecurityListingParameter parameter = 8;
+}
+
+message DeleteSecurityListingRequest {
+
+	optional string clientRequestId = 1;
+	optional int64 id = 2;
+	
+}
+
+message FindSecurityListingRequest {
+
+	optional string clientRequestId = 1;
+	optional com.celertech.search.SearchRequest searchRequest = 2;
+
+}
+
+message FindAllSecurityListingsRequest {
+
+	optional string clientRequestId = 1;
+
+}
+
+//security listing alias
+
+message PersistSecurityListingAlias {
+
+	optional string clientRequestId = 1;
+	optional int64 securityListingId = 2;
+    optional string securityIdSource = 5;
+    optional string securityCodeAlias = 6;
+    optional string securityIdAlias = 7;
+    
+}
+
+message DeleteSecurityListingAlias {
+
+	optional string clientRequestId = 1;
+    optional int64 securityListingId = 2;
+    optional string securityIdSource = 3;
+    
+}
+
+//Message to subscribe to any create, update or delete account actions
+message UpdateOnSecurityListingRequest {
 
 }

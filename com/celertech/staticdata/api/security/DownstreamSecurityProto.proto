@@ -5,6 +5,7 @@ import "com/celertech/staticdata/api/enums/AssetTypeProto.proto";
 import "com/celertech/staticdata/api/enums/SideProto.proto";
 import "com/celertech/staticdata/api/enums/StrategyTypeProto.proto";
 import "com/celertech/staticdata/api/property/PropertyProto.proto";
+import "com/celertech/staticdata/api/security/SecurityListingProto.proto";
 
 option java_package = "com.celertech.staticdata.api.security";
 
@@ -245,6 +246,9 @@ message FxSecurityMaturityDownstreamEvent {
     //Property message that is used to dynamically extend the FxSecurityDownstreamEvent
 	repeated com.celertech.staticdata.api.property.Property property = 21;
     
+    optional string splitCurrency = 22; 
+    optional int32 forwardDivisor = 23;
+    
 	message FxMaturityAliasDownstreamEvent {
 	    optional int64 fxMaturityId = 1;
 	    optional string securityCode = 2;
@@ -309,6 +313,8 @@ message DeleteSecurityNotification {
 
 	optional com.celertech.staticdata.api.enums.assettype.AssetType assetType = 2;
 	optional int64 id = 3;
+	optional string code = 4;
+	optional string exchangeCode = 5;
 }
 
 message DeleteSecurityMaturityNotification {
@@ -403,3 +409,27 @@ message FxCurrencyGroupDownstreamEvents {
 }
 
 
+message SecurityListingDownstreamEvent {
+
+	optional int64 id = 1;
+	optional com.celertech.staticdata.api.enums.assettype.AssetType assetType = 2;
+	optional string exchangeCode = 3;
+	optional string securityCode = 4;
+	optional string securityId = 5;
+	optional bool enabled = 6;
+	optional int64 createdTimestampUtcInMillis = 7;
+	optional int64 updatedTimestampUtcInMillis = 8;
+	repeated SecurityListingParameter parameter = 9;
+	repeated SecurityListingAlias alias = 10;
+}
+
+message DeleteSecurityListingConfirmation {
+
+	optional int64 id = 1;
+}
+
+message DeleteSecurityListingAliasConfirmation {
+
+	optional int64 securityListingId = 2;
+    optional string securityIdSource = 3;
+}

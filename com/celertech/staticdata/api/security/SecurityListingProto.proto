@@ -1,0 +1,20 @@
+package com.celertech.staticdata.api.security;
+
+option java_package = "com.celertech.staticdata.api.security";
+
+//security listing parameter
+
+message SecurityListingParameter {
+
+	optional string key = 3;
+	optional string value = 4;
+	
+}
+
+message SecurityListingAlias {
+	
+	optional string securityIdSource = 4;
+	optional string securityCodeAlias = 5;
+	optional string securityIdAlias = 6;
+	    
+}
