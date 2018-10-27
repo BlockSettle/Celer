@@ -1,3 +1,5 @@
+syntax = "proto2";
+
 package com.celertech.staticdata.api.enums.valuedatestatus;
 
 option java_package = "com.celertech.staticdata.api.enums";
