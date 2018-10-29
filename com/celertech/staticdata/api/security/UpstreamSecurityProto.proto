@@ -1,3 +1,5 @@
+syntax = "proto2";
+
 package com.celertech.staticdata.api.security;
 
 import "com/celertech/staticdata/api/enums/OptionTypeProto.proto";
@@ -7,7 +9,6 @@ import "com/celertech/staticdata/api/enums/StrategyTypeProto.proto";
 import "com/celertech/staticdata/api/enums/ProductTypeProto.proto";
 import "com/celertech/staticdata/api/property/PropertyProto.proto";
 import "com/celertech/staticdata/api/security/SecurityListingProto.proto";
-import "com/celertech/search/UpstreamSearchProto.proto";
 
 option java_package = "com.celertech.staticdata.api.security";
 
@@ -848,13 +849,6 @@ message DeleteSecurityListingRequest {
 	optional string clientRequestId = 1;
 	optional int64 id = 2;
 	
-}
-
-message FindSecurityListingRequest {
-
-	optional string clientRequestId = 1;
-	optional com.celertech.search.SearchRequest searchRequest = 2;
-
 }
 
 message FindAllSecurityListingsRequest {
