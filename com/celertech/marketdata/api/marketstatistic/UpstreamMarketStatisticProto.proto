@@ -1,0 +1,17 @@
+package com.celertech.marketdata.api.marketstatistic;
+
+import "com/celertech/marketdata/api/enums/AssetTypeProto.proto";
+import "com/celertech/marketdata/api/enums/ProductTypeProto.proto";
+import "com/celertech/marketdata/api/enums/MarketDataRequestTypeProto.proto";
+
+option java_package = "com.celertech.marketdata.api.marketstatistic";
+
+message MarketStatisticRequest {
+
+	optional string marketStatisticRequestId = 1;
+	optional com.celertech.marketdata.api.enums.marketdatarequesttype.MarketDataRequestType marketDataRequestType = 2;
+	optional com.celertech.marketdata.api.enums.assettype.AssetType assetType = 3;
+	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 4;
+	optional string securityId = 5;
+	optional string securityCode = 6;
+}
