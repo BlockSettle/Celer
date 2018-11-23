@@ -1,3 +1,5 @@
+syntax = "proto2";
+
 package com.celertech.marketdata.api.marketstatistic;
 
 import "com/celertech/marketdata/api/enums/AssetTypeProto.proto";
@@ -14,9 +16,9 @@ message MarketStatisticSnapshotDownstreamEvent {
 	optional string securityCode = 5;
 
 	optional MarketStatisticSnapshot snapshot = 6;
-	
+
 	message MarketStatisticSnapshot {
-		
+
 		optional double lastPx = 1;
 		optional double bestBidPx = 2;
 		optional double bestOfferPx = 3;
