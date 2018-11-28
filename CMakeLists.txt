@@ -48,6 +48,7 @@ GENERATE_PROTO(com/celertech/baseserver/api/performance)
 
 GENERATE_PROTO(com/celertech/marketmerchant/api/enums)
 GENERATE_PROTO(com/celertech/marketdata/api/enums)
+GENERATE_PROTO(com/celertech/marketdata/api/price)
 GENERATE_PROTO(com/celertech/marketdata/api/marketstatistic)
 GENERATE_PROTO(com/celertech/staticdata/api/user/property)
 
