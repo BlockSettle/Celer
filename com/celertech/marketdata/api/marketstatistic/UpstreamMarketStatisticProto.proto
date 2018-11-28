@@ -14,4 +14,5 @@ message MarketStatisticRequest {
 	optional com.celertech.marketdata.api.enums.producttype.ProductType productType = 4;
 	optional string securityId = 5;
 	optional string securityCode = 6;
+	optional string exchangeCode = 7;
 }
