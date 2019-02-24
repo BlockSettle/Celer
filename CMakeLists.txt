@@ -78,7 +78,7 @@ GENERATE_PROTO(com/celertech/staticdata/api/enums)
 GENERATE_PROTO(com/celertech/staticdata/api/security)
 GENERATE_PROTO(com/celertech/staticdata/api/property)
 
-ADD_LIBRARY(${CELER_PROTO_LIB_NAME}
+ADD_LIBRARY(${CELER_PROTO_LIB_NAME} STATIC
    ${GENERATED_SOURCE_FILES}
    ${GENERATED_HEADER_FILES}
 )
