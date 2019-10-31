@@ -128,6 +128,8 @@ message VerifyColouredCoinAcceptedQuote
    optional string currency = 7;
    optional double qty = 8;
    optional double price = 9;
+
+   optional string dealer = 10;
 }
 
 message ColouredCoinTradeRequest
