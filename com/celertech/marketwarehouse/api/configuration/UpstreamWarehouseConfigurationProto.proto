@@ -5,10 +5,7 @@ package com.celertech.marketwarehouse.api.configuration;
 import "com/celertech/marketwarehouse/api/enums/AssetTypeProto.proto";
 import "com/celertech/marketwarehouse/api/enums/AggregationTypeProto.proto";
 import "com/celertech/marketwarehouse/api/enums/TradingSessionStatusProto.proto";
-import "com/celertech/marketwarehouse/api/enums/WarehouseConfigurationTypeProto.proto";
-import "com/celertech/marketwarehouse/api/enums/OrderWorkerTypeProto.proto";
 import "com/celertech/marketwarehouse/api/enums/ProductTypeProto.proto";
-import "com/celertech/marketwarehouse/api/enums/PropertyTypeProto.proto";
 import "com/celertech/marketwarehouse/api/configuration/WarehouseConfigurationMetadata.proto";
 
 option java_package = "com.celertech.marketwarehouse.api.configuration";

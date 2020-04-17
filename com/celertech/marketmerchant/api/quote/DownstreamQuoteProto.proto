@@ -4,7 +4,6 @@ package com.celertech.marketmerchant.api.quote;
 import "com/celertech/marketmerchant/api/enums/AssetTypeProto.proto";
 import "com/celertech/marketmerchant/api/enums/QuoteCancelTypeProto.proto";
 import "com/celertech/marketmerchant/api/enums/QuoteRequestRejectReasonProto.proto";
-import "com/celertech/marketmerchant/api/enums/QuoteResponseTypeProto.proto";
 import "com/celertech/marketmerchant/api/enums/ProductTypeProto.proto";
 import "com/celertech/marketmerchant/api/enums/SideProto.proto";
 import "com/celertech/marketmerchant/api/enums/QuotingTypeProto.proto";
