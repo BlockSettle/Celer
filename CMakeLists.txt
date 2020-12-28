@@ -9,7 +9,7 @@ SET(GENERATED_INCLUDE_DIRS "")
 FUNCTION(GENERATE_PROTO PROTO_DIR)
    SET(IN_DIR ${PROTO_ROOT_DIR}/Celer/${PROTO_DIR})
    SET(OUT_DIR ${PATH_TO_GENERATED}/${PROTO_DIR})
-   
+
    FILE(MAKE_DIRECTORY ${OUT_DIR})
 
    FILE(GLOB PROTO_FILES ${IN_DIR}/*.proto)
@@ -46,10 +46,12 @@ GENERATE_PROTO(com/celertech/baseserver/api/session)
 GENERATE_PROTO(com/celertech/baseserver/api/socket)
 GENERATE_PROTO(com/celertech/baseserver/api/performance)
 
-GENERATE_PROTO(com/celertech/marketmerchant/api/enums)
 GENERATE_PROTO(com/celertech/marketdata/api/enums)
 GENERATE_PROTO(com/celertech/marketdata/api/price)
-GENERATE_PROTO(com/celertech/marketdata/api/marketstatistic)
+GENERATE_PROTO(com/celertech/marketmerchant/api/enums)
+GENERATE_PROTO(com/celertech/marketmerchant/api/marketdata)
+GENERATE_PROTO(com/celertech/marketmerchant/api/marketstatistic)
+GENERATE_PROTO(com/celertech/marketmerchant/api/marketstatistic)
 GENERATE_PROTO(com/celertech/staticdata/api/user/property)
 
 GENERATE_PROTO(com/blocksettle/enums)
